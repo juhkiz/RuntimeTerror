@@ -6,7 +6,7 @@ const RadioMap = props => {
       const radio = 
       <div>  
          <input type= {props.type ? props.type: ""}
-          value={data} name = { props.name ? props.name : "" } 
+          value={data} name = {data.id}
           /> 
             {data}
         </div>;
