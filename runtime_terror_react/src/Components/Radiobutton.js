@@ -4,34 +4,6 @@ import { useState, useEffect } from 'react'
 
 import RadioMap from './RadioMap'
 
-// Miten mapataan ?? // 
-const kysymykset = [{
-    id:"1",
-    kys1:"Ei ole ",
-    kys2:"wasd",
-    kys3:"hello",
-},
-{
-    id:"2",
-    kys1:"asd",
-    kys2:"wasd",
-    kys3:"hello",
-},
-{
-    id:"3",
-    kys1:"asd",
-    kys2:"wasd",
-    kys3:"hello",
-}
-]
-
-let kysymykset1 = ["Ei ole ", "On" ,"En tiedä"]
-let kysymykset2 = ["Juu", "Jaa" ,"Joo"]
-let kysymykset3 = ["1", "5" ,"10"]
-
-
-
-
  function Radiobutton() {
 
 
@@ -63,13 +35,11 @@ let kysymykset3 = ["1", "5" ,"10"]
 
                 {/* Then we loop and map data stored in chicken*/}  { /* Also possible to give map function 2nd parameter like "id" and use it as key */}
                 {kysymykset.map((kysymykset) => (
-          
                     <div key={kysymykset.id}>
+                        
         <input type="radio" value={kysymykset.kysymys1} name={kysymykset.id}/> {kysymykset.kysymys1} 
         <input type="radio" value={kysymykset.kysymys2} name={kysymykset.id}/> {kysymykset.kysymys2} 
         <input type="radio" value={kysymykset.kysymys3} name={kysymykset.id}/> {kysymykset.kysymys3} 
- 
-      
                     </div>       
                 ))}
             </div>
