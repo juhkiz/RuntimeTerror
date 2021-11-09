@@ -24,8 +24,8 @@ public class RuntimeTerrorApplication {
 		return (args) -> {
 			log.info("Save questions");
 			Question question1 = new Question("Mikä on nimesi","Mikä on ikäsi","Mikä on sukunimesi");
-			Question question2 = new Question("Mikä on nimesi?","Mikä on ikäsi?","Mikä on sukunimesi?");
-			Question question3 = new Question("Mikä on nimesi???","Mikä on ikäsi???","Mikä on sukunimesi???");
+			Question question2 = new Question("Mikä on ikäsi","Mikä on kotikuntasi?","Mikä on osoite");
+			Question question3 = new Question("Mikä on harrastus","Mikä on aloitusvuosi","Mikä on kokemus");
 			questionRepo.save(question1);
 			questionRepo.save(question2);
 			questionRepo.save(question3);

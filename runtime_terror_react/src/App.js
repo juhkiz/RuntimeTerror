@@ -7,8 +7,8 @@ function App() {
   return (
     <BrowserRouter>
             <Switch> 
-                <Route exact path='/'> <Radiobutton/> </Route>
-                <Route path='/question'> <Question /> </Route>
+                <Route exact path='/'> <FrontPage /> </Route>
+                <Route path='/question'> <Radiobutton /> </Route>
                 </Switch>
         </BrowserRouter>
   );

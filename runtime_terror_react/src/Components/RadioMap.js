@@ -8,7 +8,7 @@ const RadioMap = props => {
          <input type= {props.type ? props.type: ""}
           value={data} name = {data.id}
           /> 
-            {data}
+            {data.kysymys1}
         </div>;
       return radio;
     });

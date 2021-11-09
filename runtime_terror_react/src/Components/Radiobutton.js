@@ -42,7 +42,7 @@ let kysymykset3 = ["1", "5" ,"10"]
         const fetchKysymykset = async () => {
     
             // Api request to fetch data // 
-            const response = await fetch("localhost:8080/questions");
+            const response = await fetch("http://localhost:8080/questions");
             const data = await response.json();
     
             // store the data into our chicken variable
@@ -56,14 +56,26 @@ let kysymykset3 = ["1", "5" ,"10"]
         }, []);
     return (
         <div>
-        <p>Kysymykset1</p>
-        <RadioMap data = {kysymykset1} name="kysymykset1" type="radio" /> 
-        <p>Kysymykset2</p>
-        <RadioMap data= {kysymykset2} name="kysymykset2" type="radio" /> 
-        <p>Kysymykset3</p>
-        <RadioMap data = {kysymykset3} name="kysymykset3" type="radio"  /> 
-        </div> 
-      );
-    };
+        {/* display chickens from the API */}
+        {/* Tells us what we want to map (chicken) */}
+        {kysymykset&& (
+            <div className="kysymykset">
+
+                {/* Then we loop and map data stored in chicken*/}  { /* Also possible to give map function 2nd parameter like "id" and use it as key */}
+                {kysymykset.map((kysymykset) => (
+          
+                    <div key={kysymykset.id}>
+        <input type="radio" value={kysymykset.kysymys1} name={kysymykset.id}/> {kysymykset.kysymys1} 
+        <input type="radio" value={kysymykset.kysymys2} name={kysymykset.id}/> {kysymykset.kysymys2} 
+        <input type="radio" value={kysymykset.kysymys3} name={kysymykset.id}/> {kysymykset.kysymys3} 
+ 
+      
+                    </div>       
+                ))}
+            </div>
+        )}
+    </div>
+)
+}
 
     export default Radiobutton
