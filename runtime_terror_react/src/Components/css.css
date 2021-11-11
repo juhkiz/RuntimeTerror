@@ -1,0 +1,32 @@
+
+.paper {
+position: absolute;
+    width: 35%;
+    /* center page with absolute position */
+    top: 10.5%; left: 50%; transform: translate(-50%, 0);
+    margin: 2em 0em;
+    padding: 2em;
+    margin-bottom: 2em;
+    font-size: 20px;
+
+    border-radius: 25px
+}
+
+.frontpaper {
+    position: absolute;
+        width: 40%;
+        height: 60%;
+        /* center page with absolute position */
+        top: 5.5%; left: 50%; transform: translate(-50%, 0);
+        display: flex;
+        justify-content: center;
+        margin: 2em 0em;
+        margin-top: 80px;
+        padding: 2em;
+        margin-bottom: 2em;
+        font-size: 20px;
+    }
+  
+    .questions {
+     text-align: left;
+    }
