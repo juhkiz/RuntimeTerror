@@ -13,18 +13,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import Project.RuntimeTerror.domain.Question;
-import Project.RuntimeTerror.domain.QuestionRepository;
+import Project.RuntimeTerror.domain.CheckboxQuestion;
+import Project.RuntimeTerror.domain.CheckboxQuestionRepository;
+import Project.RuntimeTerror.domain.OpenQuestion;
+import Project.RuntimeTerror.domain.OpenQuestionRepository;
+import Project.RuntimeTerror.domain.RadiobuttonQuestion;
+import Project.RuntimeTerror.domain.RadioButtonRepository;
 
 @CrossOrigin
 @Controller
 public class QuestionController {
 	
 	@Autowired
-	private QuestionRepository qRepo;
+	private RadioButtonRepository qRepo;
+	
+	@Autowired
+	private CheckboxQuestionRepository checkboxRepo;
+	
+	@Autowired
+	private OpenQuestionRepository openRepo;
 	
 	@RequestMapping(value="/questions", method = RequestMethod.GET)
-    public @ResponseBody List<Question> questinListRest() {	
-        return (List<Question>) qRepo.findAll();
+    public @ResponseBody List<RadiobuttonQuestion> questionListRest() {	
+        return (List<RadiobuttonQuestion>) qRepo.findAll();
+    }
+	@RequestMapping(value="/checkboxquestions", method = RequestMethod.GET)
+    public @ResponseBody List<CheckboxQuestion> checkboxQuestinListRest() {	
+        return (List<CheckboxQuestion>) checkboxRepo.findAll();
+    }
+	@RequestMapping(value="/openquestions", method = RequestMethod.GET)
+    public @ResponseBody List<OpenQuestion> openQuestinListRest() {	
+        return (List<OpenQuestion>) openRepo.findAll();
     }
 }
