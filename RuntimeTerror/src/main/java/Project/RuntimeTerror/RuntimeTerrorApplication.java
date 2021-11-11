@@ -12,6 +12,8 @@ import Project.RuntimeTerror.domain.CheckboxQuestionRepository;
 import Project.RuntimeTerror.domain.OpenQuestion;
 import Project.RuntimeTerror.domain.OpenQuestionRepository;
 import Project.RuntimeTerror.domain.RadiobuttonQuestion;
+import Project.RuntimeTerror.domain.User;
+import Project.RuntimeTerror.domain.UserRepository;
 import Project.RuntimeTerror.domain.RadioButtonRepository;
 
 @SpringBootApplication
@@ -24,7 +26,7 @@ public class RuntimeTerrorApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDataDemo(RadioButtonRepository questionRepo, CheckboxQuestionRepository checkboxRepo, OpenQuestionRepository openRepo) {
+	public CommandLineRunner bookDataDemo(RadioButtonRepository questionRepo, CheckboxQuestionRepository checkboxRepo, OpenQuestionRepository openRepo, UserRepository uRepository) {
 		return (args) -> {
 			log.info("Save questions");
 			RadiobuttonQuestion question1 = new RadiobuttonQuestion("Tähän kyssäri", "vastaus1","vastaus2","vastaus3");
@@ -33,6 +35,9 @@ public class RuntimeTerrorApplication {
 			questionRepo.save(question1);
 			questionRepo.save(question2);
 			questionRepo.save(question3);
+			
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");  // admin:admin
+			uRepository.save(user2);
 			
 			CheckboxQuestion checkboxQ1 = new CheckboxQuestion("Kysymys1", "vastaus1","vastaus2","vastaus3","vastaus4","vastaus5");
 			CheckboxQuestion checkboxQ2 = new CheckboxQuestion("Kysymys2", "vastaus1","vastaus2","vastaus3","vastaus4","vastaus5");

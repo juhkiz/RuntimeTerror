@@ -45,4 +45,6 @@ public class QuestionController {
     public @ResponseBody List<OpenQuestion> openQuestinListRest() {	
         return (List<OpenQuestion>) openRepo.findAll();
     }
+	
+	
 }
