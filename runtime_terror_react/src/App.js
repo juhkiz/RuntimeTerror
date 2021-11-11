@@ -14,17 +14,14 @@ function App() {
     <BrowserRouter>
      <ButtonAppBar/>
             <Switch> 
-        
                 <Route exact path='/'> <FrontPage /> </Route>
-<<<<<<< HEAD
                 <Route path='/question'> <Radiobutton /> </Route>
                 <Route path='/testi'> <Harjotus /> </Route>
-=======
-                <Route path='/question'> <Radiobutton /></Route>
->>>>>>> 9bb9508bd7f6f8dabe5bf49e4efc185de05b7249
                 </Switch>
         </BrowserRouter>
   );
 }
+
+
 
 export default App;

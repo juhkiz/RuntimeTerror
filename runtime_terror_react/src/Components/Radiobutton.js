@@ -5,8 +5,6 @@ import { useState, useEffect } from 'react'
 import RadioMap from './RadioMap'
 
  function Radiobutton() {
-
-
         // React state variable to hold data, set to null // 
         const [kysymykset, setKysymykset] = useState(null);
 
