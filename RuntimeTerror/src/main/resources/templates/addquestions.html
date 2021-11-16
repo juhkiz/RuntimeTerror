@@ -1,13 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"/>
-  <body>
-  </body>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add questions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Add questions</h1>
+	<div class="container">
+		<div class="col-md-4">
+		<form th:object="${radiobuttonquestion}" th:action="@{save}" action="#" method="post">
+		  	<label for="question">Kysymys</label>
+			<input type="text" id="question" th:field="*{kysymys}" class="form-control"/>
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="answer1">vaihtoehto 1</label>
+			<input type="text" id="answer1" th:field="*{vaihtoehto1}" class="form-control"/>
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="answer2">vaihtoehto 2</label>
+			<input type="text" th:field="*{vaihtoehto2}" class="form-control"/>
+			<div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="answer3">vaihtoehto 3</label>
+			<input type="text" th:field="*{vaihtoehto3}" class="form-control"/>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" class="btn btn-primary" value="Save"></input>
+		</form>
+		</div>
+	</div>
+</body>
 </html>

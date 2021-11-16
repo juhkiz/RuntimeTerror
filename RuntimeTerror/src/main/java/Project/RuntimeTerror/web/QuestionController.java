@@ -45,6 +45,11 @@ public class QuestionController {
     public @ResponseBody List<OpenQuestion> openQuestinListRest() {	
         return (List<OpenQuestion>) openRepo.findAll();
     }
+	@RequestMapping(value="/addquestions")                        //ohjaa addquestions.html 
+       public @ResponseBody String addQuestions(Model model) {
+    	   model.addAttribute("question",new RadiobuttonQuestion());
+       return "addquestions";
+    }
 	
 	
 }
