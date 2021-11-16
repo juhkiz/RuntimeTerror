@@ -9,7 +9,7 @@
 	<h1>Add questions</h1>
 	<div class="container">
 		<div class="col-md-4">
-		<form th:object="${radiobuttonquestion}" th:action="@{save}" action="#" method="post">
+		<form th:object="${question}" th:action="@{save}" action="#" method="post">
 		  	<label for="question">Kysymys</label>
 			<input type="text" id="question" th:field="*{kysymys}" class="form-control"/>
 			<div style="clear: both; display: block; height: 10px;"></div>

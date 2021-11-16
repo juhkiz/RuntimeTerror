@@ -1,24 +1,22 @@
 package Project.RuntimeTerror.web;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import Project.RuntimeTerror.domain.CheckboxQuestion;
 import Project.RuntimeTerror.domain.CheckboxQuestionRepository;
 import Project.RuntimeTerror.domain.OpenQuestion;
 import Project.RuntimeTerror.domain.OpenQuestionRepository;
-import Project.RuntimeTerror.domain.RadiobuttonQuestion;
 import Project.RuntimeTerror.domain.RadioButtonRepository;
+import Project.RuntimeTerror.domain.RadiobuttonQuestion;
 
 @CrossOrigin
 @Controller
@@ -46,7 +44,7 @@ public class QuestionController {
         return (List<OpenQuestion>) openRepo.findAll();
     }
 	@RequestMapping(value="/addquestions")                        //ohjaa addquestions.html 
-       public @ResponseBody String addQuestions(Model model) {
+       public String addQuestions(Model model) {
     	   model.addAttribute("question",new RadiobuttonQuestion());
        return "addquestions";
     }

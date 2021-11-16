@@ -2,8 +2,6 @@
 .paper {
 position: absolute;
     width: 35%;
-    /* center page with absolute position */
-    top: 10.5%; left: 50%; transform: translate(-50%, 0);
     margin: 2em 0em;
     padding: 2em;
     margin-bottom: 2em;

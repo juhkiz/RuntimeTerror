@@ -1,11 +1,11 @@
 import './App.css';
 import FrontPage from './Components/FrontPage';
-import Question from './Components/Question';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Radiobutton from './Components/Radiobutton';
 import Harjotus from './Components/Harjotus';
 import ButtonAppBar from './Components/ButtonAppBar';
-import './Components/css.css';
+import Checkbox from './Components/Checkbox';
+import Openquestions from './Components/Openquestions';
 
 
 
@@ -15,7 +15,7 @@ function App() {
      <ButtonAppBar/>
             <Switch> 
                 <Route exact path='/'> <FrontPage /> </Route>
-                <Route path='/question'> <Radiobutton /> </Route>
+                <Route path='/question'> <Radiobutton /><Checkbox /><Openquestions/></Route>
                 <Route path='/testi'> <Harjotus /> </Route>
                 </Switch>
         </BrowserRouter>

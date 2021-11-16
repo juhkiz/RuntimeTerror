@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import {  Paper } from '@mui/material';
+import TextField from '@mui/material/TextField';
 
 import { makeStyles } from '@mui/styles';
 
@@ -19,23 +19,23 @@ const useStyles = makeStyles({
     },
   });
 
-function Radiobutton() {
+function Openquestions() {
 
     const styles = useStyles();
     // React state variable to hold data, set to null // 
-    const [radiobuttonKysymykset, setKysymykset] = useState(null);
+    const [openKysymykset, setKysymykset] = useState(null);
 
     // we will use async/await to fetch this data // 
     const fetchKysymykset = async () => {
 
         // Api request to fetch data // 
-        const response = await fetch("http://localhost:8080/questions");
+        const response = await fetch("http://localhost:8080/openquestions");
         const data = await response.json();
 
         // store the data into our chicken variable
         setKysymykset(data);
     }
-    console.log(radiobuttonKysymykset)
+    console.log(openKysymykset)
 
     // call fetchChicken on start // 
     useEffect(() => {
@@ -45,25 +45,21 @@ function Radiobutton() {
         <div>
             {/* display chickens from the API */}
             {/* Tells us what we want to map (chicken) */}
-            {radiobuttonKysymykset && (
+            {openKysymykset && (
                 <div className="kysymykset">
 
                     {/* Then we loop and map data stored in chicken*/}  { /* Also possible to give map function 2nd parameter like "id" and use it as key */}
-                    {radiobuttonKysymykset.map((radiobuttonKysymykset) => (
+                    {openKysymykset.map((openKysymykset) => (
                         <div>
-                            <Paper sx={{ background: "white" }}
+                            <Paper sx={{ background: "white"}}
                                 className="paper"
                                 elevation={3}
-                                key={radiobuttonKysymykset.id}
+                                key={openKysymykset.id}
                             >
                                 <Typography variant="h6" gutterBottom component="div">
-                                    {radiobuttonKysymykset.kysymys}
+                                    {openKysymykset.kysymys}
                                 </Typography>
-                                <input type="radio" value={radiobuttonKysymykset.vaihtoehto1} name={radiobuttonKysymykset.id} /> {radiobuttonKysymykset.vaihtoehto1}
-                                <hr style={{ width: "100%" }} />
-                                <input type="radio" value={radiobuttonKysymykset.vaihtoehto2} name={radiobuttonKysymykset.id} /> {radiobuttonKysymykset.vaihtoehto2}
-                                <hr style={{ width: "100%" }} />
-                                <input type="radio" value={radiobuttonKysymykset.vaihtoehto3} name={radiobuttonKysymykset.id} /> {radiobuttonKysymykset.vaihtoehto3}
+                                <TextField id="outlined-basic" label="Avoin tekstikenttä" variant="outlined" minRows={"5"} fullWidth={true} multiline = {true}/>
                             </Paper>
                             </div>
                     ))}
@@ -72,4 +68,4 @@ function Radiobutton() {
         </div>   
     );
 }
-export default Radiobutton
+export default Openquestions;
