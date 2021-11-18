@@ -3,73 +3,55 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
-import {  Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 
 import { makeStyles } from '@mui/styles';
+import { margin, textAlign } from '@mui/system';
 
 const useStyles = makeStyles({
     root: {
-      background: 'linear-gradient(45deg, #7465FF 30%, #35B5FF 90%)',
-      border: 0,
-      borderRadius: 3,
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      color: 'white',
-      height: 48,
-      padding: '0 30px',
+        background: 'linear-gradient(45deg, #7465FF 30%, #35B5FF 90%)',
+        border: 0,
+        borderRadius: 3,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+        height: 48,
+        padding: '0 30px',
     },
-  });
+});
 
-function Radiobutton() {
+function Radiobutton(props) {
 
     const styles = useStyles();
-    // React state variable to hold data, set to null // 
-    const [radiobuttonKysymykset, setKysymykset] = useState(null);
 
-    // we will use async/await to fetch this data // 
-    const fetchKysymykset = async () => {
-
-        // Api request to fetch data // 
-        const response = await fetch("http://localhost:8080/questions");
-        const data = await response.json();
-
-        // store the data into our chicken variable
-        setKysymykset(data);
-    }
-    console.log(radiobuttonKysymykset)
-
-    // call fetchChicken on start // 
-    useEffect(() => {
-        fetchKysymykset();
-    }, []);
     return (
         <div>
             {/* display chickens from the API */}
             {/* Tells us what we want to map (chicken) */}
-            {radiobuttonKysymykset && (
-                <div className="kysymykset">
+            <div className="kysymykset">
 
-                    {/* Then we loop and map data stored in chicken*/}  { /* Also possible to give map function 2nd parameter like "id" and use it as key */}
-                    {radiobuttonKysymykset.map((radiobuttonKysymykset) => (
-                        <div>
-                            <Paper sx={{ background: "white" }}
-                                className="paper"
-                                elevation={3}
-                                key={radiobuttonKysymykset.id}
-                            >
-                                <Typography variant="h6" gutterBottom component="div">
-                                    {radiobuttonKysymykset.kysymys}
-                                </Typography>
-                                <input type="radio" value={radiobuttonKysymykset.vaihtoehto1} name={radiobuttonKysymykset.id} /> {radiobuttonKysymykset.vaihtoehto1}
-                                <hr style={{ width: "100%" }} />
-                                <input type="radio" value={radiobuttonKysymykset.vaihtoehto2} name={radiobuttonKysymykset.id} /> {radiobuttonKysymykset.vaihtoehto2}
-                                <hr style={{ width: "100%" }} />
-                                <input type="radio" value={radiobuttonKysymykset.vaihtoehto3} name={radiobuttonKysymykset.id} /> {radiobuttonKysymykset.vaihtoehto3}
-                            </Paper>
-                            </div>
-                    ))}
-                </div>
-            )}
-        </div>   
+                <Paper sx={{
+                    background: "white",
+                    textAlign: "center",
+                    maxWidth: "500px",
+                    margin: "auto",
+                    marginBottom: "20px",
+                }}
+                    elevation={3}
+                    key={radiobuttonKysymykset.id}
+                >
+                    <Typography variant="h6" gutterBottom component="div">
+                        {props.kysymys}
+                    </Typography>
+                    <input type="radio" value={props.v1} name={props.v1} /> {props.v1}
+                    <hr style={{ width: "100%" }} />
+                    <input type="radio" value={props.v2} name={props.v2} /> {props.v2}
+                </Paper>
+            </div>
+            }
+        </div>
+    )
+} 
     );
 }
 export default Radiobutton

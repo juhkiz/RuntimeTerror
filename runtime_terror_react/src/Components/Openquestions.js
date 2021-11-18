@@ -2,22 +2,22 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
-import {  Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
     root: {
-      background: 'linear-gradient(45deg, #7465FF 30%, #35B5FF 90%)',
-      border: 0,
-      borderRadius: 3,
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      color: 'white',
-      height: 48,
-      padding: '0 30px',
+        background: 'linear-gradient(45deg, #7465FF 30%, #35B5FF 90%)',
+        border: 0,
+        borderRadius: 3,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+        height: 48,
+        padding: '0 30px',
     },
-  });
+});
 
 function Openquestions() {
 
@@ -51,7 +51,13 @@ function Openquestions() {
                     {/* Then we loop and map data stored in chicken*/}  { /* Also possible to give map function 2nd parameter like "id" and use it as key */}
                     {openKysymykset.map((openKysymykset) => (
                         <div>
-                            <Paper sx={{ background: "white"}}
+                            <Paper sx={{
+                                background: "white",
+                                textAlign: "center",
+                                maxWidth: "500px",
+                                margin: "auto",
+                                marginBottom: "20px",
+                            }}
                                 className="paper"
                                 elevation={3}
                                 key={openKysymykset.id}
@@ -59,13 +65,13 @@ function Openquestions() {
                                 <Typography variant="h6" gutterBottom component="div">
                                     {openKysymykset.kysymys}
                                 </Typography>
-                                <TextField id="outlined-basic" label="Avoin tekstikenttä" variant="outlined" minRows={"5"} fullWidth={true} multiline = {true}/>
+                                <TextField id="outlined-basic" label="Avoin tekstikenttä" variant="outlined" minRows={"5"} fullWidth={true} multiline={true} />
                             </Paper>
-                            </div>
+                        </div>
                     ))}
                 </div>
             )}
-        </div>   
+        </div>
     );
 }
 export default Openquestions;

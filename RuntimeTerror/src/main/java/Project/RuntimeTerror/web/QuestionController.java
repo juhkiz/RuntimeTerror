@@ -31,8 +31,11 @@ public class QuestionController {
 	@Autowired
 	private OpenQuestionRepository openRepo;
 	
+	
+	
 	@RequestMapping(value="/questions", method = RequestMethod.GET)
     public @ResponseBody List<RadiobuttonQuestion> questionListRest() {	
+
         return (List<RadiobuttonQuestion>) qRepo.findAll();
     }
 	@RequestMapping(value="/checkboxquestions", method = RequestMethod.GET)
