@@ -3,7 +3,7 @@ import FrontPage from './Components/FrontPage';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Harjotus from './Components/Harjotus';
 import ButtonAppBar from './Components/ButtonAppBar';
-import Questions from './Components/Questions'
+import Questions from './Components/Questions';
 
 
 

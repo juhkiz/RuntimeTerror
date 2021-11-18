@@ -11,44 +11,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import Project.RuntimeTerror.domain.CheckboxQuestion;
-import Project.RuntimeTerror.domain.CheckboxQuestionRepository;
-import Project.RuntimeTerror.domain.OpenQuestion;
-import Project.RuntimeTerror.domain.OpenQuestionRepository;
-import Project.RuntimeTerror.domain.RadioButtonRepository;
-import Project.RuntimeTerror.domain.RadiobuttonQuestion;
+import Project.RuntimeTerror.domain.OptionsRepository;
+import Project.RuntimeTerror.domain.Question;
+import Project.RuntimeTerror.domain.QuestionRepository;
+import Project.RuntimeTerror.domain.QuestionTypeRepository;
 
 @CrossOrigin
 @Controller
 public class QuestionController {
 	
 	@Autowired
-	private RadioButtonRepository qRepo;
+	OptionsRepository oRepo;
 	
 	@Autowired
-	private CheckboxQuestionRepository checkboxRepo;
+	QuestionRepository qRepo;
 	
 	@Autowired
-	private OpenQuestionRepository openRepo;
+	QuestionTypeRepository qTypeRepo;
+	
+	
+	
 	
 	
 	
 	@RequestMapping(value="/questions", method = RequestMethod.GET)
-    public @ResponseBody List<RadiobuttonQuestion> questionListRest() {	
+    public @ResponseBody List<Question> questionListRest() {	
 
-        return (List<RadiobuttonQuestion>) qRepo.findAll();
-    }
-	@RequestMapping(value="/checkboxquestions", method = RequestMethod.GET)
-    public @ResponseBody List<CheckboxQuestion> checkboxQuestinListRest() {	
-        return (List<CheckboxQuestion>) checkboxRepo.findAll();
-    }
-	@RequestMapping(value="/openquestions", method = RequestMethod.GET)
-    public @ResponseBody List<OpenQuestion> openQuestinListRest() {	
-        return (List<OpenQuestion>) openRepo.findAll();
+        return (List<Question>) qRepo.findAll();
     }
 	@RequestMapping(value="/addquestions")                        //ohjaa addquestions.html 
        public String addQuestions(Model model) {
-    	   model.addAttribute("question",new RadiobuttonQuestion());
+    	   model.addAttribute("question",new Question());
        return "addquestions";
     }
 	

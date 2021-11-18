@@ -1,39 +1,60 @@
-import React from 'react';
-import Question from './Question';
+import React, {useState, useEffect} from 'react';
+import Radiobutton from './Radiobutton';
 import Checkbox from './Checkbox';
 import Openquestions from './Openquestions';
+import Button from '@mui/material/Button';
 
 
 
 
 function Questions() {
-    const question = [
-        { type: "Radio", question: "Miten menee", v1: "hyvin", v2: "huonosti" },
-        { type: "Checkbox", question: "Miten meneeCB", v1: "hyvin", v2: "huonosti" },
-        { type: "Open", question: "Miten meneeOPE" },
-        { type: "Open", question: "Miten meneeOPEN2" },
-        { type: "Radio", question: "Miten meneeradio", v1: "hyvin", v2: "huonosti" },
-        { type: "Checkbox", question: "Miten meneecb2", v1: "hyvin", v2: "huonosti" }
+
+    const [kysymykset, setKysymykset] = useState([]);
+
+    const questions = [
+        { type: "Radio", question: "Sukupuoli", v1: "Mies", v2: "Nainen"},
+        { type: "Checkbox", question: "Valitse kaksi", v1: "kaksi", v2: "kolme" },
+        { type: "Open", question: "Avoin palaute" },
+        { type: "Open", question: "Kerro tarina" },
+        { type: "Radio", question: "Fiilis?", v1: "Hyvä", v2: "Huono" },
+        { type: "Checkbox", question: "Monivalinta", v1: "hieno", v2: "ihan ok" }
     ];
 
+    const fetchKysymykset = async () => {
+
+        const response = await fetch("http://localhost:8080/questions");
+        const data = await response.json();
+        
+        setKysymykset(data);
+    }
+    
+
+    useEffect(() => {
+        fetchKysymykset();
+    }, []);
+
+
     return (
+        
         <div>
-            {question.map((kysymys) => {
-                if (kysymys.type === "Radio") {
-                    return (<Question kysymys = {kysymys}/>
+            {kysymykset.map((kysymys) => {
+                if (kysymys.questionType.questionType === "Radio") {
+                    return (<Radiobutton kysymys = {kysymys}/>
                     );
                 }
-                else if (kysymys.type === "Checkbox") {
+                else if (kysymys.questionType.questionType === "Checkbox") {
                     return (<Checkbox kysymys = {kysymys}/>
                     );
                 }
-                else if (kysymys.type === "Open") {
+                else if (kysymys.questionType.questionType === "Open") {
                     return (<Openquestions kysymys = {kysymys}/>
                     );
                 }
 
 
-            })}</div>
+            })}
+            <Button sx = {{marginLeft: "45%"}} variant="contained">Submit</Button>
+            </div>
     );
 
 }
