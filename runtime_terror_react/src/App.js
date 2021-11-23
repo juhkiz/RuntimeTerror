@@ -11,13 +11,13 @@ import Questions from './Components/Questions';
 function App() {
   return (
     <BrowserRouter>
-     <ButtonAppBar/>
-            <Switch> 
-                <Route exact path='/'> <FrontPage /> </Route>
-                <Route path='/question'> <Questions/></Route>
-                <Route path='/testi'> <Harjotus /> </Route>
-                </Switch>
-        </BrowserRouter>
+      <ButtonAppBar />
+      <Switch>
+        <Route exact path='/'> <FrontPage /> </Route>
+        <Route path='/question'> <Questions /></Route>
+        <Route path='/testi'> <Harjotus /> </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 

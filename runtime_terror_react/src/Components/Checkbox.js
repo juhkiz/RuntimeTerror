@@ -5,18 +5,13 @@ import Box from '@mui/material/Box';
 
 function Checkbox(props) {
 
-    const [vastaus, setVastaus] = useState([]);
+    const [checked, setChecked] = useState(false);
 
-    function calc(e) {
-        setVastaus({
-            ...vastaus,
-            [e.target.name]: e.target.value
-        })
-
-        console.log(vastaus)
+    const handleChange = (e) => {
+        setChecked(!checked);
+        props.handleCheckboxAdd(e.target.value, checked)
     }
 
-    // Vastauksen käsittely ei vielä toimi toivotulla tavalla!
     return (
         <div>
             <Paper sx={{
@@ -29,8 +24,8 @@ function Checkbox(props) {
                 <Typography>
                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>
                 </Typography>
-                <input type="checkbox" value={props.kysymys.option.option1} name={props.kysymys.type} onChange={(e) => calc(e)} /> {props.kysymys.option.option1}<br />
-                <input type="checkbox" value={props.kysymys.option.option2} name={props.kysymys.type} onChange={(e) => calc(e)} /> {props.kysymys.option.option2}
+                <input type="checkbox" value={props.kysymys.option.option1} name={props.kysymys.type} onChange={(e) => handleChange(e)} /> {props.kysymys.option.option1}<br />
+                <input type="checkbox" value={props.kysymys.option.option2} name={props.kysymys.type} onChange={(e) => handleChange(e)} /> {props.kysymys.option.option2}
             </Paper>
         </div>
     );

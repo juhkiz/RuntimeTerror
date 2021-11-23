@@ -21,8 +21,8 @@ public class Options {
 	@OneToMany
 	private List<Question> question;
 	
-	public Options(){}
-
+	public Options() {}
+	
 	public Options(String option1, String option2) {
 		super();
 		this.option1 = option1;

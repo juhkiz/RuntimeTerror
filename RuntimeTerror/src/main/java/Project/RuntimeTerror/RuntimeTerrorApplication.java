@@ -32,22 +32,27 @@ public class RuntimeTerrorApplication {
 			qTypeRepo.save(radio);
 			qTypeRepo.save(checkbox);
 			qTypeRepo.save(open);
+			
 			Options o1 = new Options("Ihminen","Alien");
 			Options o2 = new Options("Vihreä","Sininen");
+			Options o3 = new Options("Koira","Kissa");
+
 			oRepo.save(o1);
 			oRepo.save(o2);
+			oRepo.save(o3);
+			
 			Question q1 = new Question("Kuka olet?", radio, o1);
 			Question q2 = new Question("Lempi värit?", checkbox, o2);
 			Question q3 = new Question("Kerro jotakin?", open);
+			Question q4 = new Question("Lempi eläin?", radio, o3);
 			qRepo.save(q1);
 			qRepo.save(q2);
 			qRepo.save(q3);
+			qRepo.save(q4);
 
 
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");  // admin:admin
 			uRepository.save(user2);
-			
-			
 		};
 	}
 }

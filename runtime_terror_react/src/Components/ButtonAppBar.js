@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 export default function ButtonAppBar() {
   return (
-    <Box sx={{ flexGrow: 1 , marginBottom: "25px"}}>
+    <Box sx={{ flexGrow: 1, marginBottom: "25px" }}>
       <AppBar position="static" >
         <Toolbar sx={{ backgroundColor: "#00a2ff" }}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
