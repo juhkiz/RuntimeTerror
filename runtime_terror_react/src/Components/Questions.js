@@ -22,7 +22,7 @@ function Questions() {
 
     const handleRadioAdd = (vastaus) => {
         
-        setRadioAnswers(radioAnswers => [ ...radioAnswers, vastaus]);
+        setRadioAnswers(radioAnswers => [...radioAnswers, vastaus]);
         console.log(vastaus);
     }
     const handleCheckboxAdd = (vastaus) => {

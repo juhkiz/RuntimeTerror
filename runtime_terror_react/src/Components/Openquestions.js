@@ -20,7 +20,7 @@ function Openquestions(props) {
                 <Typography>
                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>
                 </Typography>
-                <TextField id="outlined-basic" label="Avoin tekstikenttä" variant="outlined" minRows={"5"} fullWidth={true} multiline={true} onChange={(e) => props.handleOpenAdd(e.target.value)}/>
+                <TextField id="outlined-basic" label="Avoin tekstikenttä" variant="outlined" minRows={"5"} fullWidth={true} multiline={true} onChange={(e) => props.handleOpenAdd(e.target.value, props.kysymys.question)}/>
             </Paper>
         </div>
     );
