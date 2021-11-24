@@ -14,21 +14,38 @@ function Questions() {
     const [radioAnswers, setRadioAnswers] = useState([]);
     const [checkboxAnswers, setCheckboxAnswers] = useState([]);
     const [openAnswers, setOpenAnswers] = useState([]);
+    const [submit, setSubmit] = useState({
+        radio: [],
+        checkbox: [],
+        open: []
+    });
 
     const handleRadioAdd = (vastaus) => {
-
-        setRadioAnswers(vastaus);
+        
+        setRadioAnswers(radioAnswers => [ ...radioAnswers, vastaus]);
         console.log(vastaus);
-        console.log(radioAnswers);
     }
-    const handleCheckboxAdd = (vastaus, checked) => {
-        if (checked) {
-            setCheckboxAnswers(checkboxAnswers => [vastaus, ...checkboxAnswers])
+    const handleCheckboxAdd = (vastaus) => {
+        if (checkboxAnswers.includes(vastaus))
+        {
+            var i = checkboxAnswers.indexOf(vastaus)
+            checkboxAnswers.splice(i,1);
         }
-        if (!checked) {
-            setCheckboxAnswers([]);
-        }
-        console.log(checkboxAnswers);
+        else
+            setCheckboxAnswers(checkboxAnswers => [...checkboxAnswers, vastaus])
+    }
+
+    const handleOpenAdd = (vastaus) => {
+        setOpenAnswers(openAnswers => [...openAnswers, vastaus]);
+    }
+
+    const handleSubmit = (radio, checkbox, open) => {
+        setSubmit(
+            submit.radio = radio,
+            submit.checkbox = checkbox,
+            submit.open = open
+        )
+        console.log(submit);
     }
 
     const fetchKysymykset = async () => {
@@ -58,13 +75,13 @@ function Questions() {
                     );
                 }
                 else if (kysymys.questionType.questionType === "Open") {
-                    return (<Openquestions kysymys={kysymys} />
+                    return (<Openquestions kysymys={kysymys} handleOpenAdd={handleOpenAdd} />
                     );
                 }
 
 
             })}
-            <Button sx={{ marginLeft: "45%" }} variant="contained">Submit</Button>
+            <Button sx={{ marginLeft: "45%" }} variant="contained" onClick = {()=> handleSubmit(radioAnswers, checkboxAnswers, openAnswers)}>Submit</Button>
         </div>
     );
 

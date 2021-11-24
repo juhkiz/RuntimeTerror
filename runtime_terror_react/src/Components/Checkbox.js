@@ -8,8 +8,7 @@ function Checkbox(props) {
     const [checked, setChecked] = useState(false);
 
     const handleChange = (e) => {
-        setChecked(!checked);
-        props.handleCheckboxAdd(e.target.value, checked)
+        props.handleCheckboxAdd(e.target.value)
     }
 
     return (

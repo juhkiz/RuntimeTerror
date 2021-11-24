@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Booklist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+	<h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1>
+	<h1>Questions</h1>
+    <table class="table table-striped">
+		<tr>
+		    <th>Author</th>
+		    <th>Type</th>
+		    <th>Options:</th>
+		    
+		</tr>  
+    	<tr th:each = "question : ${questions}">
+    		<td th:text="${question.question}"></td>
+    		<td th:text="${question.questionType.questionType}"></td>
+    		<td th:if="${question.questionType.questionType == 'Radio' || question.questionType.questionType == 'Checkbox' }" th:text="${question.option.option1} + ' ' + ${question.option.option2}"></td>
+    	</tr>
+     </table>
+	<form th:action="@{/logout}" method="post">
+	<a href="/addquestions" class="btn btn-success">Add Question</a>
+     <input type="submit" value="Sign Out"/>
+    </form>
+</body>
+</html>

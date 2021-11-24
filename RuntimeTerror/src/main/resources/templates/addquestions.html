@@ -3,7 +3,7 @@
 <head>
     <title>Add questions</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
 	<h1>Add questions</h1>
@@ -11,22 +11,24 @@
 		<div class="col-md-4">
 		<form th:object="${question}" th:action="@{save}" action="#" method="post">
 		  	<label for="question">Kysymys</label>
-			<input type="text" id="question" th:field="*{kysymys}" class="form-control"/>
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="answer1">vaihtoehto 1</label>
-			<input type="text" id="answer1" th:field="*{vaihtoehto1}" class="form-control"/>
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="answer2">vaihtoehto 2</label>
-			<input type="text" th:field="*{vaihtoehto2}" class="form-control"/>
-			<div style="clear: both; display: block; height: 10px;"></div>						
-		  	<label for="answer3">vaihtoehto 3</label>
-			<input type="text" th:field="*{vaihtoehto3}" class="form-control"/>
+			<input type="text" id="question" th:field="*{question}" class="form-control"/>
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
-			
+			<select id = "qtypelist" th:field = "*{questionType}" class="form-control-sm">
+				<option th:each="type: ${types}" th:value="${type.questionTypeId}" th:text="${type.questionType}"></option>
+			</select>
 			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="question">Option1</label>
+			<input type="text" id="option1" th:field="*{option.option1}" class="form-control"/>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="question">Option2</label>
+			<input type="text" id="option2" th:field="*{option.option2}" class="form-control"/>
+			
+	
 			<input type="submit" class="btn btn-primary" value="Save"></input>
 		</form>
+		<a href="/questionlist" class="btn btn-success">Back to questionlist</a>
 		</div>
 	</div>
 </body>
