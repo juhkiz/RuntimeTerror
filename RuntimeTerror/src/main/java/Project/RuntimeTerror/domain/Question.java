@@ -1,33 +1,41 @@
 package Project.RuntimeTerror.domain;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Question {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String question;
-	
+	private String title;
+
 	@ManyToOne
-	@JoinColumn(name="questionTypeId")
+	@JoinColumn(name = "questionTypeId")
 	private QuestionType questionType;
-	
+
 	@ManyToOne
-	@JoinColumn(name="optionId")
+	@JoinColumn(name = "optionId")
 	private Options option;
 
-	public Question() {}
+	public Question() {
+	}
 
-	public Question(String question, QuestionType questionType, Options option) {
+	public Question(String title, QuestionType questionType, Options option) {
 		super();
-		this.question = question;
+		this.title = title;
 		this.questionType = questionType;
 		this.option = option;
 	}
-	public Question(String question, QuestionType questionType) {
+
+	public Question(String title, QuestionType questionType) {
 		super();
-		this.question = question;
+		this.title = title;
 		this.questionType = questionType;
 	}
 
@@ -39,12 +47,12 @@ public class Question {
 		this.id = id;
 	}
 
-	public String getQuestion() {
-		return question;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public QuestionType getQuestionType() {

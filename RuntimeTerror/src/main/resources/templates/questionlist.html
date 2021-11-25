@@ -17,7 +17,7 @@
 		    
 		</tr>  
     	<tr th:each = "question : ${questions}">
-    		<td th:text="${question.question}"></td>
+    		<td th:text="${question.title}"></td>
     		<td th:text="${question.questionType.questionType}"></td>
     		<td th:if="${question.questionType.questionType == 'Radio' || question.questionType.questionType == 'Checkbox' }" th:text="${question.option.option1} + ' ' + ${question.option.option2}"></td>
     	</tr>

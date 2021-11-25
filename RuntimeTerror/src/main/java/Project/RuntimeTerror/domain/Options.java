@@ -1,8 +1,8 @@
 package Project.RuntimeTerror.domain;
 
-
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,18 +11,19 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Options {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long optionId;
 	private String option1;
 	private String option2;
-	
-	@OneToMany
+
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Question> question;
-	
-	public Options() {}
-	
+
+	public Options() {
+	}
+
 	public Options(String option1, String option2) {
 		super();
 		this.option1 = option1;
