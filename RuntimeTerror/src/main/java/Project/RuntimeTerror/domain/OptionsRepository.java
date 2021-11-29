@@ -5,6 +5,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 
 @RepositoryRestResource
-public interface OptionsRepository extends CrudRepository<Options, Long> {
+public interface OptionsRepository extends CrudRepository<Option, Long> {
 
 }

@@ -11,29 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-import Project.RuntimeTerror.domain.OptionsRepository;
 import Project.RuntimeTerror.domain.Question;
 import Project.RuntimeTerror.domain.QuestionRepository;
-import Project.RuntimeTerror.domain.QuestionTypeRepository;
 
 @CrossOrigin
 @Controller
 public class QuestionController {
 	
-	@Autowired
-	OptionsRepository oRepo;
 	
 	@Autowired
 	QuestionRepository qRepo;
-	
-	@Autowired
-	QuestionTypeRepository qTypeRepo;
-	
-	
-	
-	
-	
-	
+
 	@RequestMapping(value="/questions", method = RequestMethod.GET)
     public @ResponseBody List<Question> questionListRest() {	
 
@@ -42,7 +30,6 @@ public class QuestionController {
 	@RequestMapping(value="/addquestions")                        //ohjaa addquestions.html 
        public String addQuestions(Model model) {
     	   model.addAttribute("question",new Question());
-    	   model.addAttribute("types", qTypeRepo.findAll());
        return "addquestions";
     }
 	 @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -56,6 +43,4 @@ public class QuestionController {
 	        model.addAttribute("questions", qRepo.findAll());
 	        return "questionlist";
 	    }
-	
-	
 }

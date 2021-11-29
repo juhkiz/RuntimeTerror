@@ -20,8 +20,11 @@ function Radiobutton(props) {
                 <Typography>
                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>
                 </Typography>
-                <input type="radio" value={props.kysymys.option.option1} name={props.kysymys.id} onChange={(e) => props.handleRadioAdd(e.target.value)} /> {props.kysymys.option.option1}<br />
-                <input type="radio" value={props.kysymys.option.option2} name={props.kysymys.id} onChange={(e) => props.handleRadioAdd(e.target.value)} /> {props.kysymys.option.option2}
+                {props.kysymys.options.map(optio => <label>
+                    <input type="radio" value={optio.option} name={optio.optionId} />
+                    {optio.option}
+                    <br></br>
+                </label>)}
             </Paper>
         </div>
     );

@@ -8,7 +8,7 @@ function Checkbox(props) {
     const [checked, setChecked] = useState(false);
 
     const handleChange = (e) => {
-        props.handleCheckboxAdd(e.target.value)
+        console.log(e);
     }
 
     return (
@@ -23,10 +23,15 @@ function Checkbox(props) {
                 <Typography>
                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>
                 </Typography>
-                <input type="checkbox" value={props.kysymys.option.option1} name={props.kysymys.type} onChange={(e) => handleChange(e)} /> {props.kysymys.option.option1}<br />
-                <input type="checkbox" value={props.kysymys.option.option2} name={props.kysymys.type} onChange={(e) => handleChange(e)} /> {props.kysymys.option.option2}
+                {props.kysymys.options.map(optio => <label>
+                    <input type="checkbox" value={optio.option} name={optio.optionId} onChange={(e) => handleChange(e.target.value)} />
+                    {optio.option}
+                    <br></br>
+                </label>)}
             </Paper>
         </div>
     );
 }
 export default Checkbox
+
+//{props.kysymys.options.map(optio => <input type="checkbox" value = {optio.option} name = {optio.optionId} onChange={(e) => handleChange(e.target.value)}/>)}

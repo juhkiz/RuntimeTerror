@@ -1,42 +1,56 @@
 package Project.RuntimeTerror.domain;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
 public class Question {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long questionId;
+	private String questionType;
 	private String question;
 	
-	@ManyToOne
-	@JoinColumn(name="questionTypeId")
-	private QuestionType questionType;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Option> options;
 	
 	@ManyToOne
-	@JoinColumn(name="optionId")
-	private Options option;
-
+	@JoinColumn(name = "questionnaireId")
+	private Questionnaire questionnaire;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Answer> answers;
+	
 	public Question() {}
 
-	public Question(String question, QuestionType questionType, Options option) {
+	public Question(String questionType, String question, List<Option> options) {
 		super();
-		this.question = question;
 		this.questionType = questionType;
-		this.option = option;
+		this.question = question;
+		this.options = options;
 	}
-	public Question(String question, QuestionType questionType) {
+	
+	public Question(String questionType, String question) {
 		super();
-		this.question = question;
 		this.questionType = questionType;
+		this.question = question;
+	}
+	
+	public Long getQuestionId() {
+		return questionId;
 	}
 
-	public Long getId() {
-		return id;
+	public void setQuestionId(Long questionId) {
+		this.questionId = questionId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public String getQuestionType() {
+		return questionType;
+	}
+
+	public void setQuestionType(String questionType) {
+		this.questionType = questionType;
 	}
 
 	public String getQuestion() {
@@ -47,19 +61,27 @@ public class Question {
 		this.question = question;
 	}
 
-	public QuestionType getQuestionType() {
-		return questionType;
+	public List<Option> getOptions() {
+		return options;
 	}
 
-	public void setQuestionType(QuestionType questionType) {
-		this.questionType = questionType;
+	public void setOptions(List<Option> options) {
+		this.options = options;
 	}
 
-	public Options getOption() {
-		return option;
+	public Questionnaire getQuestionnaire() {
+		return questionnaire;
 	}
 
-	public void setOption(Options option) {
-		this.option = option;
+	public void setQuestionnaire(Questionnaire questionnaire) {
+		this.questionnaire = questionnaire;
+	}
+
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
 	}
 }

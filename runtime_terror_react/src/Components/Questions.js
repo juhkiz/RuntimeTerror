@@ -60,21 +60,21 @@ function Questions() {
     useEffect(() => {
         fetchKysymykset();
     }, []);
-
+    console.log(kysymykset);
 
     return (
 
         <div>
             {kysymykset.map((kysymys) => {
-                if (kysymys.questionType.questionType === "Radio") {
+                if (kysymys.questionType === "Radio") {
                     return (<Radiobutton kysymys={kysymys} handleRadioAdd={handleRadioAdd} />
                     );
                 }
-                else if (kysymys.questionType.questionType === "Checkbox") {
+                else if (kysymys.questionType === "Checkbox") {
                     return (<Checkbox kysymys={kysymys} handleCheckboxAdd={handleCheckboxAdd} />
                     );
                 }
-                else if (kysymys.questionType.questionType === "Open") {
+                else if (kysymys.questionType === "Open") {
                     return (<Openquestions kysymys={kysymys} handleOpenAdd={handleOpenAdd} />
                     );
                 }
