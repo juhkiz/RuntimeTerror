@@ -3,6 +3,7 @@ import Radiobutton from './Radiobutton';
 import Checkbox from './Checkbox';
 import Openquestions from './Openquestions';
 import Button from '@mui/material/Button';
+import { SettingsInputComponent } from '@material-ui/icons';
 
 
 
@@ -20,23 +21,30 @@ function Questions() {
         open: []
     });
 
-    const handleRadioAdd = (vastaus) => {
-        
-        setRadioAnswers(radioAnswers => [...radioAnswers, vastaus]);
-        console.log(vastaus);
+    const handleRadioAdd = (event) => {
+
+        setRadioAnswers({ ...radioAnswers, [event.target.id]: event.target.value });
+
     }
-    const handleCheckboxAdd = (vastaus) => {
-        if (checkboxAnswers.includes(vastaus))
-        {
-            var i = checkboxAnswers.indexOf(vastaus)
-            checkboxAnswers.splice(i,1);
+    const handleCheckboxAdd = (event) => {
+
+        console.log(event.target.value);
+        console.log(checkboxAnswers);
+
+        if (checkboxAnswers[event.target.id]) {
+            setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [...checkboxAnswers[event.target.id], event.target.value] });
         }
-        else
-            setCheckboxAnswers(checkboxAnswers => [...checkboxAnswers, vastaus])
+        else if (checkboxAnswers.includes(event.target.value)) {
+            var i = checkboxAnswers.indexOf(event.target.value)
+            checkboxAnswers.splice(i, 1);
+        }
+        else {
+            setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [event.target.value] });
+        }
     }
 
-    const handleOpenAdd = (vastaus) => {
-        setOpenAnswers(openAnswers => [...openAnswers, vastaus]);
+    const handleOpenAdd = (event) => {
+        setOpenAnswers({ ...openAnswers, [event.target.id]: event.target.value });
     }
 
     const handleSubmit = (radio, checkbox, open) => {
@@ -60,7 +68,7 @@ function Questions() {
     useEffect(() => {
         fetchKysymykset();
     }, []);
-    console.log(kysymykset);
+
 
     return (
 
@@ -81,9 +89,12 @@ function Questions() {
 
 
             })}
-            <Button sx={{ marginLeft: "45%" }} variant="contained" onClick = {()=> handleSubmit(radioAnswers, checkboxAnswers, openAnswers)}>Submit</Button>
+            <Button sx={{ marginLeft: "45%" }} variant="contained" onClick={() => handleSubmit(radioAnswers, checkboxAnswers, openAnswers)}>Submit</Button>
         </div>
     );
 
 }
-export default Questions
+
+export default Questions;
+
+//setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [...checkboxAnswers[event.target.id], event.target.value]});

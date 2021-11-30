@@ -21,7 +21,7 @@ function Radiobutton(props) {
                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>
                 </Typography>
                 {props.kysymys.options.map(optio => <label>
-                    <input type="radio" value={optio.option} name={optio.optionId} />
+                    <input type="radio" value={optio.option} id = {props.kysymys.questionId} name={props.kysymys.questionId}  onChange={(e) => props.handleRadioAdd(e)}/>
                     {optio.option}
                     <br></br>
                 </label>)}

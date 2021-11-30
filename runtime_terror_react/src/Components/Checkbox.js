@@ -5,11 +5,6 @@ import Box from '@mui/material/Box';
 
 function Checkbox(props) {
 
-    const [checked, setChecked] = useState(false);
-
-    const handleChange = (e) => {
-        console.log(e);
-    }
 
     return (
         <div>
@@ -24,7 +19,7 @@ function Checkbox(props) {
                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>
                 </Typography>
                 {props.kysymys.options.map(optio => <label>
-                    <input type="checkbox" value={optio.option} name={optio.optionId} onChange={(e) => handleChange(e.target.value)} />
+                    <input type="checkbox" value={optio.option} id={props.kysymys.questionId} name={props.kysymys.questionId} onChange={(e) => props.handleCheckboxAdd(e)} />
                     {optio.option}
                     <br></br>
                 </label>)}
