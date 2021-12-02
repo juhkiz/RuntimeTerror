@@ -3,7 +3,7 @@ import Radiobutton from './Radiobutton';
 import Checkbox from './Checkbox';
 import Openquestions from './Openquestions';
 import Button from '@mui/material/Button';
-import { SettingsInputComponent } from '@material-ui/icons';
+
 
 
 
@@ -13,7 +13,7 @@ function Questions() {
     const [kysymykset, setKysymykset] = useState([]);
 
     const [radioAnswers, setRadioAnswers] = useState([]);
-    const [checkboxAnswers, setCheckboxAnswers] = useState([]);
+    const [checkboxAnswers, setCheckboxAnswers] = useState({});
     const [openAnswers, setOpenAnswers] = useState([]);
     const [submit, setSubmit] = useState({
         radio: [],
@@ -27,19 +27,14 @@ function Questions() {
 
     }
     const handleCheckboxAdd = (event) => {
-
-        console.log(event.target.value);
-        console.log(checkboxAnswers);
-
-        if (checkboxAnswers[event.target.id]) {
-            setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [...checkboxAnswers[event.target.id], event.target.value] });
-        }
-        else if (checkboxAnswers.includes(event.target.value)) {
-            var i = checkboxAnswers.indexOf(event.target.value)
-            checkboxAnswers.splice(i, 1);
-        }
-        else {
-            setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [event.target.value] });
+      
+        setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [...(checkboxAnswers[event.target.id] || []), event.target.value] });
+        
+        if(checkboxAnswers[event.target.id]?.includes(event.target.value))
+        {
+            var index = checkboxAnswers[event.target.id].indexOf(event.target.value)
+            console.log(checkboxAnswers[event.target.id])
+            checkboxAnswers[event.target.id].splice(index,1)
         }
     }
 
@@ -53,7 +48,7 @@ function Questions() {
             submit.checkbox = checkbox,
             submit.open = open
         )
-        console.log(submit);
+        console.log(JSON.stringify(submit,null,2));
     }
 
     const fetchKysymykset = async () => {
@@ -96,5 +91,3 @@ function Questions() {
 }
 
 export default Questions;
-
-//setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [...checkboxAnswers[event.target.id], event.target.value]});
