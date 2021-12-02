@@ -1,0 +1,843 @@
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/RuntimeTerrorApplication.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/RuntimeTerrorApplication.java[m
+[1mindex cee6b67..603552e 100644[m
+[1m--- a/RuntimeTerror/src/main/java/Project/RuntimeTerror/RuntimeTerrorApplication.java[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/RuntimeTerrorApplication.java[m
+[36m@@ -1,16 +1,19 @@[m
+ package Project.RuntimeTerror;[m
+ [m
+[32m+[m[32mimport java.util.ArrayList;[m
+[32m+[m[32mimport java.util.List;[m
+[32m+[m
+ import org.springframework.boot.CommandLineRunner;[m
+ import org.springframework.boot.SpringApplication;[m
+ import org.springframework.boot.autoconfigure.SpringBootApplication;[m
+ import org.springframework.context.annotation.Bean;[m
+ [m
+[31m-import Project.RuntimeTerror.domain.Options;[m
+[32m+[m[32mimport Project.RuntimeTerror.domain.Option;[m
+ import Project.RuntimeTerror.domain.OptionsRepository;[m
+ import Project.RuntimeTerror.domain.Question;[m
+ import Project.RuntimeTerror.domain.QuestionRepository;[m
+[31m-import Project.RuntimeTerror.domain.QuestionType;[m
+[31m-import Project.RuntimeTerror.domain.QuestionTypeRepository;[m
+[32m+[m[32mimport Project.RuntimeTerror.domain.Questionnaire;[m
+[32m+[m[32mimport Project.RuntimeTerror.domain.QuestionnaireRepository;[m
+ import Project.RuntimeTerror.domain.User;[m
+ import Project.RuntimeTerror.domain.UserRepository;[m
+ [m
+[36m@@ -23,38 +26,39 @@[m [mpublic class RuntimeTerrorApplication {[m
+ 	}[m
+ 	[m
+ 	@Bean[m
+[31m-	public CommandLineRunner bookDataDemo(QuestionRepository qRepo, OptionsRepository oRepo, QuestionTypeRepository qTypeRepo, UserRepository uRepository) {[m
+[32m+[m	[32mpublic CommandLineRunner bookDataDemo(UserRepository uRepository, QuestionnaireRepository queRepo, QuestionRepository qRepo, OptionsRepository oRepo) {[m
+ 		return (args) -> {[m
+ 			[m
+[31m-			QuestionType radio = new QuestionType("Radio");[m
+[31m-			QuestionType checkbox = new QuestionType("Checkbox");[m
+[31m-			QuestionType open = new QuestionType("Open");[m
+[31m-			qTypeRepo.save(radio);[m
+[31m-			qTypeRepo.save(checkbox);[m
+[31m-			qTypeRepo.save(open);[m
+ 			[m
+[31m-			Options o1 = new Options("Ihminen","Alien");[m
+[31m-			Options o2 = new Options("Vihreä","Sininen");[m
+[31m-			Options o3 = new Options("Koira","Kissa");[m
+[31m-			Options o4 = new Options("Lenkkeily","Punttisali");[m
+[31m-[m
+[31m-			oRepo.save(o1);[m
+[31m-			oRepo.save(o2);[m
+[31m-			oRepo.save(o3);[m
+[31m-			oRepo.save(o4);[m
+[32m+[m			[32mOption option1 = new Option("Hyvää");[m
+[32m+[m			[32mOption option2 = new Option("Pahaa");[m
+[32m+[m			[32mArrayList<Option> options1 = new ArrayList<>();[m
+[32m+[m			[32moptions1.add(option1);[m
+[32m+[m			[32moptions1.add(option2);[m
+[32m+[m[41m			[m
+[32m+[m			[32mOption option3 = new Option("Sininen");[m
+[32m+[m			[32mOption option4 = new Option("Keltainen");[m
+[32m+[m			[32mOption option5 = new Option("Vihreä");[m
+[32m+[m			[32mOption option6 = new Option("Punainen");[m
+[32m+[m			[32mArrayList<Option> options2 = new ArrayList<>();[m
+[32m+[m			[32moptions2.add(option3);[m
+[32m+[m			[32moptions2.add(option4);[m
+[32m+[m			[32moptions2.add(option5);[m
+[32m+[m			[32moptions2.add(option6);[m
+[32m+[m[41m			[m
+[32m+[m			[32mQuestion question2 = new Question("Checkbox","Lempivärit?", options2);[m
+[32m+[m			[32mQuestion question3 = new Question("Open","Kerro tarina");[m
+[32m+[m[41m			[m
+[32m+[m			[32mQuestion question1 = new Question("Radio","Mitä kuuluu?", options1);[m
+[32m+[m			[32mArrayList<Question> questions1 = new ArrayList<>();[m
+[32m+[m			[32mquestions1.add(question1);[m
+[32m+[m			[32mquestions1.add(question2);[m
+[32m+[m			[32mquestions1.add(question3);[m
+[32m+[m[41m			[m
+[32m+[m			[32mQuestionnaire test1 = new Questionnaire("Testikysely",questions1);[m
+[32m+[m[41m			[m
+[32m+[m			[32mqueRepo.save(test1);[m
+ 			[m
+[31m-			Question q1 = new Question("Kuka olet?", radio, o1);[m
+[31m-			Question q2 = new Question("Lempi värit?", checkbox, o2);[m
+[31m-			Question q3 = new Question("Kerro jotakin?", open);[m
+[31m-			Question q4 = new Question("Lempi eläin?", radio, o3);[m
+[31m-			Question q5 = new Question("Miten päiväsi menee?", open);[m
+[31m-			Question q6 = new Question("Lempi harrastus?", checkbox, o4);[m
+[31m-			qRepo.save(q1);[m
+[31m-			qRepo.save(q2);[m
+[31m-			qRepo.save(q3);[m
+[31m-			qRepo.save(q4);[m
+[31m-			qRepo.save(q5);[m
+[31m-			qRepo.save(q6);[m
+ [m
+ [m
+ 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");  // admin:admin[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Answer.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Answer.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6d788c6[m
+[1m--- /dev/null[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Answer.java[m
+[36m@@ -0,0 +1,52 @@[m
+[32m+[m[32mpackage Project.RuntimeTerror.domain;[m
+[32m+[m
+[32m+[m[32mimport javax.persistence.Entity;[m
+[32m+[m[32mimport javax.persistence.GeneratedValue;[m
+[32m+[m[32mimport javax.persistence.GenerationType;[m
+[32m+[m[32mimport javax.persistence.Id;[m
+[32m+[m[32mimport javax.persistence.JoinColumn;[m
+[32m+[m[32mimport javax.persistence.ManyToOne;[m
+[32m+[m
+[32m+[m[32m@Entity[m
+[32m+[m[32mpublic class Answer {[m
+[32m+[m	[32m@Id[m
+[32m+[m	[32m@GeneratedValue(strategy = GenerationType.AUTO)[m
+[32m+[m	[32mprivate Long answerId;[m
+[32m+[m[41m	[m
+[32m+[m	[32mprivate String answer;[m
+[32m+[m[41m	[m
+[32m+[m	[32m@ManyToOne[m
+[32m+[m	[32m@JoinColumn(name = "questionId")[m
+[32m+[m	[32mprivate Question question;[m
+[32m+[m[41m	[m
+[32m+[m	[32mpublic Answer(){}[m
+[32m+[m
+[32m+[m	[32mpublic Answer(String answer) {[m
+[32m+[m		[32msuper();[m
+[32m+[m		[32mthis.answer = answer;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic Long getAnswerId() {[m
+[32m+[m		[32mreturn answerId;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setAnswerId(Long answerId) {[m
+[32m+[m		[32mthis.answerId = answerId;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic String getAnswer() {[m
+[32m+[m		[32mreturn answer;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setAnswer(String answer) {[m
+[32m+[m		[32mthis.answer = answer;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic Question getQuestion() {[m
+[32m+[m		[32mreturn question;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setQuestion(Question question) {[m
+[32m+[m		[32mthis.question = question;[m
+[32m+[m	[32m}[m
+[32m+[m[32m}[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/AnswerRepository.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/AnswerRepository.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e5413ef[m
+[1m--- /dev/null[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/AnswerRepository.java[m
+[36m@@ -0,0 +1,7 @@[m
+[32m+[m[32mpackage Project.RuntimeTerror.domain;[m
+[32m+[m
+[32m+[m[32mimport org.springframework.data.repository.CrudRepository;[m
+[32m+[m
+[32m+[m[32mpublic interface AnswerRepository extends CrudRepository<Answer, Long> {[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Option.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Option.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c567920[m
+[1m--- /dev/null[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Option.java[m
+[36m@@ -0,0 +1,55 @@[m
+[32m+[m[32mpackage Project.RuntimeTerror.domain;[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32mimport javax.persistence.Entity;[m
+[32m+[m[32mimport javax.persistence.GeneratedValue;[m
+[32m+[m[32mimport javax.persistence.GenerationType;[m
+[32m+[m[32mimport javax.persistence.Id;[m
+[32m+[m[32mimport javax.persistence.JoinColumn;[m
+[32m+[m[32mimport javax.persistence.ManyToOne;[m
+[32m+[m
+[32m+[m
+[32m+[m[32m@Entity[m
+[32m+[m[32mpublic class Option {[m
+[32m+[m[41m	[m
+[32m+[m	[32m@Id[m
+[32m+[m	[32m@GeneratedValue(strategy = GenerationType.IDENTITY)[m
+[32m+[m	[32mprivate Long optionId;[m
+[32m+[m	[32mprivate String option;[m
+[32m+[m[41m	[m
+[32m+[m	[32m@ManyToOne[m
+[32m+[m	[32m@JoinColumn(name = "questionId")[m
+[32m+[m	[32mprivate Question question;[m
+[32m+[m[41m	[m
+[32m+[m	[32mpublic Option(String option) {[m
+[32m+[m		[32msuper();[m
+[32m+[m		[32mthis.option = option;[m
+[32m+[m	[32m}[m
+[32m+[m[41m	[m
+[32m+[m	[32mpublic Option() {}[m
+[32m+[m
+[32m+[m	[32mpublic Long getOptionId() {[m
+[32m+[m		[32mreturn optionId;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setOptionId(Long optionId) {[m
+[32m+[m		[32mthis.optionId = optionId;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic String getOption() {[m
+[32m+[m		[32mreturn option;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setOption(String option) {[m
+[32m+[m		[32mthis.option = option;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic Question getQuestion() {[m
+[32m+[m		[32mreturn question;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setQuestion(Question question) {[m
+[32m+[m		[32mthis.question = question;[m
+[32m+[m	[32m}[m
+[32m+[m[32m}[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Options.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Options.java[m
+[1mindex 4eb1b55..d5df91c 100644[m
+[1m--- a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Options.java[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Options.java[m
+[36m@@ -1,8 +1,8 @@[m
+ package Project.RuntimeTerror.domain;[m
+ [m
+[31m-[m
+ import java.util.List;[m
+ [m
+[32m+[m[32mimport javax.persistence.CascadeType;[m
+ import javax.persistence.Entity;[m
+ import javax.persistence.GeneratedValue;[m
+ import javax.persistence.GenerationType;[m
+[36m@@ -11,18 +11,19 @@[m [mimport javax.persistence.OneToMany;[m
+ [m
+ @Entity[m
+ public class Options {[m
+[31m-	[m
+[32m+[m
+ 	@Id[m
+[31m-	@GeneratedValue(strategy = GenerationType.IDENTITY)[m
+[32m+[m	[32m@GeneratedValue(strategy = GenerationType.AUTO)[m
+ 	private Long optionId;[m
+ 	private String option1;[m
+ 	private String option2;[m
+[31m-	[m
+[31m-	@OneToMany[m
+[32m+[m
+[32m+[m	[32m@OneToMany(cascade = CascadeType.ALL)[m
+ 	private List<Question> question;[m
+[31m-	[m
+[31m-	public Options() {}[m
+[31m-	[m
+[32m+[m
+[32m+[m	[32mpublic Options() {[m
+[32m+[m	[32m}[m
+[32m+[m
+ 	public Options(String option1, String option2) {[m
+ 		super();[m
+ 		this.option1 = option1;[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/OptionsRepository.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/OptionsRepository.java[m
+[1mindex 240710e..cd8d6b2 100644[m
+[1m--- a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/OptionsRepository.java[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/OptionsRepository.java[m
+[36m@@ -5,6 +5,6 @@[m [mimport org.springframework.data.rest.core.annotation.RepositoryRestResource;[m
+ [m
+ [m
+ @RepositoryRestResource[m
+[31m-public interface OptionsRepository extends CrudRepository<Options, Long> {[m
+[32m+[m[32mpublic interface OptionsRepository extends CrudRepository<Option, Long> {[m
+ [m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Question.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Question.java[m
+[1mindex 7f1bb0c..7f5352f 100644[m
+[1m--- a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Question.java[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Question.java[m
+[36m@@ -1,65 +1,113 @@[m
+ package Project.RuntimeTerror.domain;[m
+[32m+[m
+[32m+[m[32mimport java.util.List;[m
+[32m+[m
+ import javax.persistence.*;[m
+ [m
+[32m+[m
+[32m+[m[32mimport javax.persistence.Entity;[m
+[32m+[m[32mimport javax.persistence.GeneratedValue;[m
+[32m+[m[32mimport javax.persistence.GenerationType;[m
+[32m+[m[32mimport javax.persistence.Id;[m
+[32m+[m[32mimport javax.persistence.JoinColumn;[m
+[32m+[m[32mimport javax.persistence.ManyToOne;[m
+[32m+[m
+[32m+[m
+ @Entity[m
+ public class Question {[m
+[31m-	[m
+[32m+[m
+ 	@Id[m
+[31m-	@GeneratedValue(strategy = GenerationType.IDENTITY)[m
+[31m-	private Long id;[m
+[32m+[m	[32m@GeneratedValue(strategy = GenerationType.AUTO)[m
+[32m+[m	[32mprivate Long questionId;[m
+[32m+[m	[32mprivate String questionType;[m
+ 	private String question;[m
+ 	[m
+[31m-	@ManyToOne[m
+[31m-	@JoinColumn(name="questionTypeId")[m
+[31m-	private QuestionType questionType;[m
+[32m+[m	[32m@OneToMany(cascade = CascadeType.ALL)[m
+[32m+[m	[32mprivate List<Option> options;[m
+ 	[m
+ 	@ManyToOne[m
+[31m-	@JoinColumn(name="optionId")[m
+[31m-	private Options option;[m
+[32m+[m	[32m@JoinColumn(name = "questionnaireId")[m
+[32m+[m	[32mprivate Questionnaire questionnaire;[m
+[32m+[m[41m	[m
+[32m+[m	[32m@OneToMany(cascade = CascadeType.ALL)[m
+[32m+[m	[32mprivate List<Answer> answers;[m
+[32m+[m[41m	[m
+ [m
+[31m-	public Question() {}[m
+[32m+[m	[32mpublic Question() {[m
+[32m+[m	[32m}[m
+ [m
+[31m-	public Question(String question, QuestionType questionType, Options option) {[m
+[32m+[m
+[32m+[m	[32mpublic Question(String questionType, String question, List<Option> options) {[m
+ 		super();[m
+[31m-		this.question = question;[m
+ 		this.questionType = questionType;[m
+[31m-		this.option = option;[m
+[32m+[m		[32mthis.question = question;[m
+[32m+[m		[32mthis.options = options;[m
+ 	}[m
+[31m-	public Question(String question, QuestionType questionType) {[m
+[32m+[m
+[32m+[m
+[32m+[m	[32mpublic Question(String questionType, String question) {[m
+ 		super();[m
+[31m-		this.question = question;[m
+ 		this.questionType = questionType;[m
+[32m+[m		[32mthis.question = question;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m	[32mpublic Long getQuestionId() {[m
+[32m+[m		[32mreturn questionId;[m
+ 	}[m
+ [m
+[31m-	public Long getId() {[m
+[31m-		return id;[m
+[32m+[m
+[32m+[m	[32mpublic void setQuestionId(Long questionId) {[m
+[32m+[m		[32mthis.questionId = questionId;[m
+ 	}[m
+ [m
+[31m-	public void setId(Long id) {[m
+[31m-		this.id = id;[m
+[32m+[m
+[32m+[m	[32mpublic String getQuestionType() {[m
+[32m+[m		[32mreturn questionType;[m
+ 	}[m
+ [m
+[32m+[m
+[32m+[m	[32mpublic void setQuestionType(String questionType) {[m
+[32m+[m		[32mthis.questionType = questionType;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m
+ 	public String getQuestion() {[m
+ 		return question;[m
+ 	}[m
+ [m
+[32m+[m
+ 	public void setQuestion(String question) {[m
+ 		this.question = question;[m
+ 	}[m
+ [m
+[31m-	public QuestionType getQuestionType() {[m
+[31m-		return questionType;[m
+[32m+[m
+[32m+[m	[32mpublic List<Option> getOptions() {[m
+[32m+[m		[32mreturn options;[m
+ 	}[m
+ [m
+[31m-	public void setQuestionType(QuestionType questionType) {[m
+[31m-		this.questionType = questionType;[m
+[32m+[m
+[32m+[m	[32mpublic void setOptions(List<Option> options) {[m
+[32m+[m		[32mthis.options = options;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m	[32mpublic Questionnaire getQuestionnaire() {[m
+[32m+[m		[32mreturn questionnaire;[m
+ 	}[m
+ [m
+[31m-	public Options getOption() {[m
+[31m-		return option;[m
+[32m+[m
+[32m+[m	[32mpublic void setQuestionnaire(Questionnaire questionnaire) {[m
+[32m+[m		[32mthis.questionnaire = questionnaire;[m
+ 	}[m
+ [m
+[31m-	public void setOption(Options option) {[m
+[31m-		this.option = option;[m
+[32m+[m
+[32m+[m	[32mpublic List<Answer> getAnswers() {[m
+[32m+[m		[32mreturn answers;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m	[32mpublic void setAnswers(List<Answer> answers) {[m
+[32m+[m		[32mthis.answers = answers;[m
+ 	}[m
+ }[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/QuestionType.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/QuestionType.java[m
+[1mdeleted file mode 100644[m
+[1mindex 3480ab1..0000000[m
+[1m--- a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/QuestionType.java[m
+[1m+++ /dev/null[m
+[36m@@ -1,39 +0,0 @@[m
+[31m-package Project.RuntimeTerror.domain;[m
+[31m-import java.util.List;[m
+[31m-[m
+[31m-import javax.persistence.*;[m
+[31m-[m
+[31m-@Entity[m
+[31m-public class QuestionType {[m
+[31m-	[m
+[31m-	@Id[m
+[31m-	@GeneratedValue(strategy=GenerationType.AUTO)[m
+[31m-	private Long questionTypeId;[m
+[31m-	private String questionType;[m
+[31m-	[m
+[31m-	@OneToMany[m
+[31m-	private List<Question> questions;[m
+[31m-[m
+[31m-	public QuestionType(){}[m
+[31m-	[m
+[31m-	public QuestionType(String questionType) {[m
+[31m-		super();[m
+[31m-		this.questionType = questionType;[m
+[31m-	}[m
+[31m-[m
+[31m-	public Long getQuestionTypeId() {[m
+[31m-		return questionTypeId;[m
+[31m-	}[m
+[31m-[m
+[31m-	public void setQuestionTypeId(Long questionTypeId) {[m
+[31m-		this.questionTypeId = questionTypeId;[m
+[31m-	}[m
+[31m-[m
+[31m-	public String getQuestionType() {[m
+[31m-		return questionType;[m
+[31m-	}[m
+[31m-[m
+[31m-	public void setQuestionType(String questionType) {[m
+[31m-		this.questionType = questionType;[m
+[31m-	}[m
+[31m-}[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/QuestionTypeRepository.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/QuestionTypeRepository.java[m
+[1mdeleted file mode 100644[m
+[1mindex 6badbe4..0000000[m
+[1m--- a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/QuestionTypeRepository.java[m
+[1m+++ /dev/null[m
+[36m@@ -1,10 +0,0 @@[m
+[31m-package Project.RuntimeTerror.domain;[m
+[31m-[m
+[31m-import org.springframework.data.repository.CrudRepository;[m
+[31m-import org.springframework.data.rest.core.annotation.RepositoryRestResource;[m
+[31m-[m
+[31m-[m
+[31m-@RepositoryRestResource[m
+[31m-public interface QuestionTypeRepository extends CrudRepository<QuestionType, Long> {[m
+[31m-[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Questionnaire.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Questionnaire.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..35640d5[m
+[1m--- /dev/null[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/Questionnaire.java[m
+[36m@@ -0,0 +1,48 @@[m
+[32m+[m[32mpackage Project.RuntimeTerror.domain;[m
+[32m+[m[32mimport java.util.List;[m
+[32m+[m
+[32m+[m[32mimport javax.persistence.*;[m
+[32m+[m
+[32m+[m[32m@Entity[m
+[32m+[m[32mpublic class Questionnaire {[m
+[32m+[m[41m	[m
+[32m+[m	[32m@Id[m
+[32m+[m	[32m@GeneratedValue(strategy=GenerationType.AUTO)[m
+[32m+[m	[32mprivate Long questionnaireId;[m
+[32m+[m	[32mprivate String name;[m
+[32m+[m[41m	[m
+[32m+[m	[32m@OneToMany(cascade = CascadeType.ALL)[m
+[32m+[m	[32mprivate List<Question> questions;[m
+[32m+[m[41m	[m
+[32m+[m	[32mpublic Questionnaire() {}[m
+[32m+[m
+[32m+[m	[32mpublic Questionnaire(String name, List<Question> questions) {[m
+[32m+[m		[32msuper();[m
+[32m+[m		[32mthis.name = name;[m
+[32m+[m		[32mthis.questions = questions;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic Long getQuestionnaireId() {[m
+[32m+[m		[32mreturn questionnaireId;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setQuestionnaireId(Long questionnaireId) {[m
+[32m+[m		[32mthis.questionnaireId = questionnaireId;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic String getName() {[m
+[32m+[m		[32mreturn name;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setName(String name) {[m
+[32m+[m		[32mthis.name = name;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic List<Question> getQuestions() {[m
+[32m+[m		[32mreturn questions;[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mpublic void setQuestions(List<Question> questions) {[m
+[32m+[m		[32mthis.questions = questions;[m
+[32m+[m	[32m}[m
+[32m+[m[32m}[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/QuestionnaireRepository.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/QuestionnaireRepository.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ef618eb[m
+[1m--- /dev/null[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/domain/QuestionnaireRepository.java[m
+[36m@@ -0,0 +1,7 @@[m
+[32m+[m[32mpackage Project.RuntimeTerror.domain;[m
+[32m+[m
+[32m+[m[32mimport org.springframework.data.repository.CrudRepository;[m
+[32m+[m
+[32m+[m[32mpublic interface QuestionnaireRepository extends CrudRepository<Questionnaire, Long> {[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/web/QuestionController.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/web/QuestionController.java[m
+[1mindex 4a6d12b..8f10415 100644[m
+[1m--- a/RuntimeTerror/src/main/java/Project/RuntimeTerror/web/QuestionController.java[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/web/QuestionController.java[m
+[36m@@ -10,30 +10,18 @@[m [mimport org.springframework.web.bind.annotation.RequestMapping;[m
+ import org.springframework.web.bind.annotation.RequestMethod;[m
+ import org.springframework.web.bind.annotation.ResponseBody;[m
+ [m
+[31m-[m
+[31m-import Project.RuntimeTerror.domain.OptionsRepository;[m
+[32m+[m[32mimport Project.RuntimeTerror.domain.Option;[m
+ import Project.RuntimeTerror.domain.Question;[m
+ import Project.RuntimeTerror.domain.QuestionRepository;[m
+[31m-import Project.RuntimeTerror.domain.QuestionTypeRepository;[m
+ [m
+ @CrossOrigin[m
+ @Controller[m
+ public class QuestionController {[m
+ 	[m
+[31m-	@Autowired[m
+[31m-	OptionsRepository oRepo;[m
+ 	[m
+ 	@Autowired[m
+ 	QuestionRepository qRepo;[m
+[31m-	[m
+[31m-	@Autowired[m
+[31m-	QuestionTypeRepository qTypeRepo;[m
+[31m-	[m
+[31m-	[m
+[31m-	[m
+[31m-	[m
+[31m-	[m
+[31m-	[m
+[32m+[m
+ 	@RequestMapping(value="/questions", method = RequestMethod.GET)[m
+     public @ResponseBody List<Question> questionListRest() {	[m
+ [m
+[36m@@ -42,7 +30,6 @@[m [mpublic class QuestionController {[m
+ 	@RequestMapping(value="/addquestions")                        //ohjaa addquestions.html [m
+        public String addQuestions(Model model) {[m
+     	   model.addAttribute("question",new Question());[m
+[31m-    	   model.addAttribute("types", qTypeRepo.findAll());[m
+        return "addquestions";[m
+     }[m
+ 	 @RequestMapping(value = "/save", method = RequestMethod.POST)[m
+[36m@@ -56,6 +43,4 @@[m [mpublic class QuestionController {[m
+ 	        model.addAttribute("questions", qRepo.findAll());[m
+ 	        return "questionlist";[m
+ 	    }[m
+[31m-	[m
+[31m-	[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/RuntimeTerror/src/main/java/Project/RuntimeTerror/web/QuestionnaireController.java b/RuntimeTerror/src/main/java/Project/RuntimeTerror/web/QuestionnaireController.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a4118ca[m
+[1m--- /dev/null[m
+[1m+++ b/RuntimeTerror/src/main/java/Project/RuntimeTerror/web/QuestionnaireController.java[m
+[36m@@ -0,0 +1,29 @@[m
+[32m+[m[32mpackage Project.RuntimeTerror.web;[m
+[32m+[m
+[32m+[m[32mimport java.util.List;[m
+[32m+[m
+[32m+[m[32mimport org.springframework.beans.factory.annotation.Autowired;[m
+[32m+[m[32mimport org.springframework.stereotype.Controller;[m
+[32m+[m[32mimport org.springframework.web.bind.annotation.CrossOrigin;[m
+[32m+[m[32mimport org.springframework.web.bind.annotation.RequestMapping;[m
+[32m+[m[32mimport org.springframework.web.bind.annotation.RequestMethod;[m
+[32m+[m[32mimport org.springframework.web.bind.annotation.ResponseBody;[m
+[32m+[m
+[32m+[m
+[32m+[m[32mimport Project.RuntimeTerror.domain.Questionnaire;[m
+[32m+[m[32mimport Project.RuntimeTerror.domain.QuestionnaireRepository;[m
+[32m+[m
+[32m+[m[32m@CrossOrigin[m
+[32m+[m[32m@Controller[m
+[32m+[m[32mpublic class QuestionnaireController {[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m	[32m@Autowired[m
+[32m+[m	[32mQuestionnaireRepository queRepo;[m
+[32m+[m
+[32m+[m	[32m@RequestMapping(value="/questionnaires", method = RequestMethod.GET)[m
+[32m+[m[32m    public @ResponseBody List<Questionnaire> questionnaireListRest() {[m[41m	[m
+[32m+[m
+[32m+[m[32m        return (List<Questionnaire>) queRepo.findAll();[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/RuntimeTerror/src/main/resources/templates/addquestions.html b/RuntimeTerror/src/main/resources/templates/addquestions.html[m
+[1mindex 1ad29e7..fc31853 100644[m
+[1m--- a/RuntimeTerror/src/main/resources/templates/addquestions.html[m
+[1m+++ b/RuntimeTerror/src/main/resources/templates/addquestions.html[m
+[36m@@ -10,8 +10,8 @@[m
+ 	<div class="container">[m
+ 		<div class="col-md-4">[m
+ 		<form th:object="${question}" th:action="@{save}" action="#" method="post">[m
+[31m-		  	<label for="question">Kysymys</label>[m
+[31m-			<input type="text" id="question" th:field="*{question}" class="form-control"/>[m
+[32m+[m		[41m  [m	[32m<label for="title">Kysymys</label>[m
+[32m+[m			[32m<input type="text" id="title" th:field="*{title}" class="form-control"/>[m
+ 			<div style="clear: both; display: block; height: 10px;"></div>[m
+ 			[m
+ 			<select id = "qtypelist" th:field = "*{questionType}" class="form-control-sm">[m
+[36m@@ -19,10 +19,10 @@[m
+ 			</select>[m
+ 			<div style="clear: both; display: block; height: 10px;"></div>[m
+ 			[m
+[31m-			<label for="question">Option1</label>[m
+[32m+[m			[32m<label for="option1">Option1</label>[m
+ 			<input type="text" id="option1" th:field="*{option.option1}" class="form-control"/>[m
+ 			<div style="clear: both; display: block; height: 10px;"></div>[m
+[31m-			<label for="question">Option2</label>[m
+[32m+[m			[32m<label for="option2">Option2</label>[m
+ 			<input type="text" id="option2" th:field="*{option.option2}" class="form-control"/>[m
+ 			[m
+ 	[m
+[1mdiff --git a/RuntimeTerror/src/main/resources/templates/questionlist.html b/RuntimeTerror/src/main/resources/templates/questionlist.html[m
+[1mindex 0030c23..9766e2f 100644[m
+[1m--- a/RuntimeTerror/src/main/resources/templates/questionlist.html[m
+[1m+++ b/RuntimeTerror/src/main/resources/templates/questionlist.html[m
+[36m@@ -17,7 +17,7 @@[m
+ 		    [m
+ 		</tr>  [m
+     	<tr th:each = "question : ${questions}">[m
+[31m-    		<td th:text="${question.question}"></td>[m
+[32m+[m[41m    [m		[32m<td th:text="${question.title}"></td>[m
+     		<td th:text="${question.questionType.questionType}"></td>[m
+     		<td th:if="${question.questionType.questionType == 'Radio' || question.questionType.questionType == 'Checkbox' }" th:text="${question.option.option1} + ' ' + ${question.option.option2}"></td>[m
+     	</tr>[m
+[1mdiff --git a/runtime_terror_react/src/Components/Checkbox.js b/runtime_terror_react/src/Components/Checkbox.js[m
+[1mindex cc3013d..5122f5e 100644[m
+[1m--- a/runtime_terror_react/src/Components/Checkbox.js[m
+[1m+++ b/runtime_terror_react/src/Components/Checkbox.js[m
+[36m@@ -5,11 +5,6 @@[m [mimport Box from '@mui/material/Box';[m
+ [m
+ function Checkbox(props) {[m
+ [m
+[31m-    const [checked, setChecked] = useState(false);[m
+[31m-[m
+[31m-    const handleChange = (e) => {[m
+[31m-        props.handleCheckboxAdd(e.target.value)[m
+[31m-    }[m
+ [m
+     return ([m
+         <div>[m
+[36m@@ -23,10 +18,15 @@[m [mfunction Checkbox(props) {[m
+                 <Typography>[m
+                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>[m
+                 </Typography>[m
+[31m-                <input type="checkbox" value={props.kysymys.option.option1} name={props.kysymys.type} onChange={(e) => handleChange(e)} /> {props.kysymys.option.option1}<br />[m
+[31m-                <input type="checkbox" value={props.kysymys.option.option2} name={props.kysymys.type} onChange={(e) => handleChange(e)} /> {props.kysymys.option.option2}[m
+[32m+[m[32m                {props.kysymys.options.map(optio => <label>[m
+[32m+[m[32m                    <input type="checkbox" value={optio.option} id={props.kysymys.questionId} name={props.kysymys.questionId} onChange={(e) => props.handleCheckboxAdd(e)} />[m
+[32m+[m[32m                    {optio.option}[m
+[32m+[m[32m                    <br></br>[m
+[32m+[m[32m                </label>)}[m
+             </Paper>[m
+         </div>[m
+     );[m
+ }[m
+[31m-export default Checkbox[m
+\ No newline at end of file[m
+[32m+[m[32mexport default Checkbox[m
+[32m+[m
+[32m+[m[32m//{props.kysymys.options.map(optio => <input type="checkbox" value = {optio.option} name = {optio.optionId} onChange={(e) => handleChange(e.target.value)}/>)}[m
+\ No newline at end of file[m
+[1mdiff --git a/runtime_terror_react/src/Components/Openquestions.js b/runtime_terror_react/src/Components/Openquestions.js[m
+[1mindex 7f0b677..b87e095 100644[m
+[1m--- a/runtime_terror_react/src/Components/Openquestions.js[m
+[1m+++ b/runtime_terror_react/src/Components/Openquestions.js[m
+[36m@@ -20,7 +20,7 @@[m [mfunction Openquestions(props) {[m
+                 <Typography>[m
+                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>[m
+                 </Typography>[m
+[31m-                <TextField id="outlined-basic" label="Avoin tekstikenttä" variant="outlined" minRows={"5"} fullWidth={true} multiline={true} onChange={(e) => props.handleOpenAdd(e.target.value, props.kysymys.question)}/>[m
+[32m+[m[32m                <TextField id={props.kysymys.questionId} label="Avoin tekstikenttä" variant="outlined" minRows={"5"} fullWidth={true} multiline={true} onChange={(e) => props.handleOpenAdd(e)}/>[m
+             </Paper>[m
+         </div>[m
+     );[m
+[1mdiff --git a/runtime_terror_react/src/Components/Questions.js b/runtime_terror_react/src/Components/Questions.js[m
+[1mindex c65a7d4..97280d3 100644[m
+[1m--- a/runtime_terror_react/src/Components/Questions.js[m
+[1m+++ b/runtime_terror_react/src/Components/Questions.js[m
+[36m@@ -3,6 +3,7 @@[m [mimport Radiobutton from './Radiobutton';[m
+ import Checkbox from './Checkbox';[m
+ import Openquestions from './Openquestions';[m
+ import Button from '@mui/material/Button';[m
+[32m+[m[32mimport { SettingsInputComponent } from '@material-ui/icons';[m
+ [m
+ [m
+ [m
+[36m@@ -20,23 +21,30 @@[m [mfunction Questions() {[m
+         open: [][m
+     });[m
+ [m
+[31m-    const handleRadioAdd = (vastaus) => {[m
+[31m-        [m
+[31m-        setRadioAnswers(radioAnswers => [...radioAnswers, vastaus]);[m
+[31m-        console.log(vastaus);[m
+[32m+[m[32m    const handleRadioAdd = (event) => {[m
+[32m+[m
+[32m+[m[32m        setRadioAnswers({ ...radioAnswers, [event.target.id]: event.target.value });[m
+[32m+[m
+     }[m
+[31m-    const handleCheckboxAdd = (vastaus) => {[m
+[31m-        if (checkboxAnswers.includes(vastaus))[m
+[31m-        {[m
+[31m-            var i = checkboxAnswers.indexOf(vastaus)[m
+[31m-            checkboxAnswers.splice(i,1);[m
+[32m+[m[32m    const handleCheckboxAdd = (event) => {[m
+[32m+[m
+[32m+[m[32m        console.log(event.target.value);[m
+[32m+[m[32m        console.log(checkboxAnswers);[m
+[32m+[m
+[32m+[m[32m        if (checkboxAnswers[event.target.id]) {[m
+[32m+[m[32m            setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [...checkboxAnswers[event.target.id], event.target.value] });[m
+[32m+[m[32m        }[m
+[32m+[m[32m        else if (checkboxAnswers.includes(event.target.value)) {[m
+[32m+[m[32m            var i = checkboxAnswers.indexOf(event.target.value)[m
+[32m+[m[32m            checkboxAnswers.splice(i, 1);[m
+[32m+[m[32m        }[m
+[32m+[m[32m        else {[m
+[32m+[m[32m            setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [event.target.value] });[m
+         }[m
+[31m-        else[m
+[31m-            setCheckboxAnswers(checkboxAnswers => [...checkboxAnswers, vastaus])[m
+     }[m
+ [m
+[31m-    const handleOpenAdd = (vastaus) => {[m
+[31m-        setOpenAnswers(openAnswers => [...openAnswers, vastaus]);[m
+[32m+[m[32m    const handleOpenAdd = (event) => {[m
+[32m+[m[32m        setOpenAnswers({ ...openAnswers, [event.target.id]: event.target.value });[m
+     }[m
+ [m
+     const handleSubmit = (radio, checkbox, open) => {[m
+[36m@@ -66,24 +74,27 @@[m [mfunction Questions() {[m
+ [m
+         <div>[m
+             {kysymykset.map((kysymys) => {[m
+[31m-                if (kysymys.questionType.questionType === "Radio") {[m
+[32m+[m[32m                if (kysymys.questionType === "Radio") {[m
+                     return (<Radiobutton kysymys={kysymys} handleRadioAdd={handleRadioAdd} />[m
+                     );[m
+                 }[m
+[31m-                else if (kysymys.questionType.questionType === "Checkbox") {[m
+[32m+[m[32m                else if (kysymys.questionType === "Checkbox") {[m
+                     return (<Checkbox kysymys={kysymys} handleCheckboxAdd={handleCheckboxAdd} />[m
+                     );[m
+                 }[m
+[31m-                else if (kysymys.questionType.questionType === "Open") {[m
+[32m+[m[32m                else if (kysymys.questionType === "Open") {[m
+                     return (<Openquestions kysymys={kysymys} handleOpenAdd={handleOpenAdd} />[m
+                     );[m
+                 }[m
+ [m
+ [m
+             })}[m
+[31m-            <Button sx={{ marginLeft: "45%" }} variant="contained" onClick = {()=> handleSubmit(radioAnswers, checkboxAnswers, openAnswers)}>Submit</Button>[m
+[32m+[m[32m            <Button sx={{ marginLeft: "45%" }} variant="contained" onClick={() => handleSubmit(radioAnswers, checkboxAnswers, openAnswers)}>Submit</Button>[m
+         </div>[m
+     );[m
+ [m
+ }[m
+[31m-export default Questions[m
+\ No newline at end of file[m
+[32m+[m
+[32m+[m[32mexport default Questions;[m
+[32m+[m
+[32m+[m[32m//setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [...checkboxAnswers[event.target.id], event.target.value]});[m
+\ No newline at end of file[m
+[1mdiff --git a/runtime_terror_react/src/Components/Radiobutton.js b/runtime_terror_react/src/Components/Radiobutton.js[m
+[1mindex d724d42..c1b202d 100644[m
+[1m--- a/runtime_terror_react/src/Components/Radiobutton.js[m
+[1m+++ b/runtime_terror_react/src/Components/Radiobutton.js[m
+[36m@@ -20,8 +20,11 @@[m [mfunction Radiobutton(props) {[m
+                 <Typography>[m
+                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>[m
+                 </Typography>[m
+[31m-                <input type="radio" value={props.kysymys.option.option1} name={props.kysymys.id} onChange={(e) => props.handleRadioAdd(e.target.value)} /> {props.kysymys.option.option1}<br />[m
+[31m-                <input type="radio" value={props.kysymys.option.option2} name={props.kysymys.id} onChange={(e) => props.handleRadioAdd(e.target.value)} /> {props.kysymys.option.option2}[m
+[32m+[m[32m                {props.kysymys.options.map(optio => <label>[m
+[32m+[m[32m                    <input type="radio" value={optio.option} id = {props.kysymys.questionId} name={props.kysymys.questionId}  onChange={(e) => props.handleRadioAdd(e)}/>[m
+[32m+[m[32m                    {optio.option}[m
+[32m+[m[32m                    <br></br>[m
+[32m+[m[32m                </label>)}[m
+             </Paper>[m
+         </div>[m
+     );[m

@@ -10,21 +10,17 @@
 	<div class="container">
 		<div class="col-md-4">
 		<form th:object="${question}" th:action="@{save}" action="#" method="post">
-		  	<label for="title">Kysymys</label>
-			<input type="text" id="title" th:field="*{title}" class="form-control"/>
+		  	<label for="questionType">Question Type</label>
+			<input type="text" id="questionType" th:field="*{questionType}" class="form-control"/>
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
-			<select id = "qtypelist" th:field = "*{questionType}" class="form-control-sm">
-				<option th:each="type: ${types}" th:value="${type.questionTypeId}" th:text="${type.questionType}"></option>
-			</select>
+			<label for="question">Question</label>
+			<input type="text" id="question" th:field="*{questionName}" class="form-control"/>
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
-			<label for="option1">Option1</label>
-			<input type="text" id="option1" th:field="*{option.option1}" class="form-control"/>
+			<label for="options">Options</label>
+			<input type="text" id="options" th:field="*{question.options}" class="form-control"/>
 			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="option2">Option2</label>
-			<input type="text" id="option2" th:field="*{option.option2}" class="form-control"/>
-			
 	
 			<input type="submit" class="btn btn-primary" value="Save"></input>
 		</form>

@@ -48,8 +48,13 @@ public class Option {
 	public Question getQuestion() {
 		return question;
 	}
-
+	
 	public void setQuestion(Question question) {
 		this.question = question;
+	}
+
+	@Override
+	public String toString() {
+		return option;
 	}
 }

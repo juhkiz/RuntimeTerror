@@ -8,8 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import Project.RuntimeTerror.domain.Answer;
+import Project.RuntimeTerror.domain.AnswerRepository;
 import Project.RuntimeTerror.domain.Option;
-import Project.RuntimeTerror.domain.OptionsRepository;
 import Project.RuntimeTerror.domain.Question;
 import Project.RuntimeTerror.domain.QuestionRepository;
 import Project.RuntimeTerror.domain.Questionnaire;
@@ -26,7 +27,7 @@ public class RuntimeTerrorApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDataDemo(UserRepository uRepository, QuestionnaireRepository queRepo, QuestionRepository qRepo, OptionsRepository oRepo) {
+	public CommandLineRunner bookDataDemo(UserRepository uRepository, QuestionnaireRepository queRepo, QuestionRepository qRepo, AnswerRepository ansRepo) {
 		return (args) -> {
 			
 			
@@ -45,6 +46,10 @@ public class RuntimeTerrorApplication {
 			options2.add(option4);
 			options2.add(option5);
 			options2.add(option6);
+			
+//			Answer answer1 = new Answer("Hyvää");
+//			ArrayList<Answer> answers1 = new ArrayList<>();
+//			answers1.add(answer1);
 			
 			Question question2 = new Question("Checkbox","Lempivärit?", options2);
 			Question question3 = new Question("Open","Kerro tarina");

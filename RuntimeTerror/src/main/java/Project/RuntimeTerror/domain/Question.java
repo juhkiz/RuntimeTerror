@@ -20,7 +20,7 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long questionId;
 	private String questionType;
-	private String question;
+	private String questionName;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Option> options;
@@ -35,20 +35,29 @@ public class Question {
 
 	public Question() {
 	}
+	
 
-
-	public Question(String questionType, String question, List<Option> options) {
+	public Question(String questionType, String questionName, List<Option> options) {
 		super();
 		this.questionType = questionType;
-		this.question = question;
+		this.questionName = questionName;
 		this.options = options;
 	}
 
 
-	public Question(String questionType, String question) {
+	public Question(String questionType, String questionName, List<Option> options, List<Answer> answers) {
 		super();
 		this.questionType = questionType;
-		this.question = question;
+		this.questionName = questionName;
+		this.options = options;
+		this.answers = answers;
+	}
+
+
+	public Question(String questionType, String questionName) {
+		super();
+		this.questionType = questionType;
+		this.questionName = questionName;
 	}
 
 
@@ -72,13 +81,13 @@ public class Question {
 	}
 
 
-	public String getQuestion() {
-		return question;
+	public String getQuestionName() {
+		return questionName;
 	}
 
 
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setQuestionName(String questionName) {
+		this.questionName = questionName;
 	}
 
 
