@@ -27,15 +27,14 @@ function Questions() {
 
     }
     const handleCheckboxAdd = (event) => {
-      
-        setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [...(checkboxAnswers[event.target.id] || []), event.target.value] });
-        
-        if(checkboxAnswers[event.target.id]?.includes(event.target.value))
-        {
+
+        if (checkboxAnswers[event.target.id]?.includes(event.target.value)) {
             var index = checkboxAnswers[event.target.id].indexOf(event.target.value)
             console.log(checkboxAnswers[event.target.id])
-            checkboxAnswers[event.target.id].splice(index,1)
+            checkboxAnswers[event.target.id].splice(index, 1)
         }
+        else
+            setCheckboxAnswers({ ...checkboxAnswers, [event.target.id]: [...(checkboxAnswers[event.target.id] || []), event.target.value] });
     }
 
     const handleOpenAdd = (event) => {
@@ -48,7 +47,7 @@ function Questions() {
             submit.checkbox = checkbox,
             submit.open = open
         )
-        console.log(JSON.stringify(submit,null,2));
+        console.log(JSON.stringify(submit, null, 2));
     }
 
     const fetchKysymykset = async () => {
