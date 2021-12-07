@@ -37,6 +37,12 @@ public class RuntimeTerrorApplication {
 			options1.add(option1);
 			options1.add(option2);
 			
+			Option optio1 = new Option("Kivaa");
+			Option optio2 = new Option("Tylsää");
+			ArrayList<Option> optionssi1 = new ArrayList<>();
+			optionssi1.add(optio1);
+			optionssi1.add(optio2);
+			
 			Option option3 = new Option("Sininen");
 			Option option4 = new Option("Keltainen");
 			Option option5 = new Option("Vihreä");
@@ -47,18 +53,28 @@ public class RuntimeTerrorApplication {
 			options2.add(option5);
 			options2.add(option6);
 			
-//			Answer answer1 = new Answer("Hyvää");
-//			ArrayList<Answer> answers1 = new ArrayList<>();
-//			answers1.add(answer1);
+			Option optioni1 = new Option("Kissa");
+			Option optioni2 = new Option("Koira");
+			Option optioni3 = new Option("Kala");
+			ArrayList<Option> options3 = new ArrayList<>();
+			options3.add(optioni1);
+			options3.add(optioni2);
+			options3.add(optioni3);
 			
 			Question question2 = new Question("Checkbox","Lempivärit?", options2);
 			Question question3 = new Question("Open","Kerro tarina");
+			Question question4 = new Question("Open","Tämä on avoin kommenttikenttä");
+			Question question5 = new Question("Checkbox","Lempi eläimet?", options3);
+			Question question6 = new Question("Radio","Onko koodaaminen?", optionssi1);
 			
 			Question question1 = new Question("Radio","Mitä kuuluu?", options1);
 			ArrayList<Question> questions1 = new ArrayList<>();
 			questions1.add(question1);
 			questions1.add(question2);
 			questions1.add(question3);
+			questions1.add(question4);
+			questions1.add(question5);
+			questions1.add(question6);
 			
 			Questionnaire test1 = new Questionnaire("Testikysely",questions1);
 			

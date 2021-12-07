@@ -18,7 +18,7 @@ function Openquestions(props) {
                 marginBottom: "20px",
             }}>
                 <Typography>
-                    <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>
+                    <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.questionName}</Box>
                 </Typography>
                 <TextField id={props.kysymys.questionId} label="Avoin tekstikenttä" variant="outlined" minRows={"5"} fullWidth={true} multiline={true} onChange={(e) => props.handleOpenAdd(e)}/>
             </Paper>

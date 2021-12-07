@@ -23,7 +23,7 @@ function Questions() {
 
     const handleRadioAdd = (event) => {
 
-        setRadioAnswers({ ...radioAnswers, [event.target.id]: event.target.value });
+        setRadioAnswers({ ...radioAnswers, questionId:event.target.id, answer:event.target.value });
 
     }
     const handleCheckboxAdd = (event) => {
@@ -45,9 +45,21 @@ function Questions() {
         setSubmit(
             submit.radio = radio,
             submit.checkbox = checkbox,
-            submit.open = open
-        )
+            submit.open = open);
         console.log(JSON.stringify(submit, null, 2));
+        (async () => {
+            const rawResponse = await fetch('http://localhost:8080/testsave', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({questionId: 2, answer: "testivastaus"})
+            });
+            const content = await rawResponse.json();
+
+            console.log(content);
+        })();
     }
 
     const fetchKysymykset = async () => {

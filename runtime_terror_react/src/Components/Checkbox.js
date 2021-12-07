@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Typography from '@mui/material/Typography';
 import { Paper } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -16,7 +16,7 @@ function Checkbox(props) {
                 marginBottom: "20px",
             }}>
                 <Typography>
-                    <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>
+                    <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.questionName}</Box>
                 </Typography>
                 {props.kysymys.options.map(optio => <label>
                     <input type="checkbox" value={optio.option} id={props.kysymys.questionId} name={props.kysymys.questionId} onChange={(e) => props.handleCheckboxAdd(e)} />
