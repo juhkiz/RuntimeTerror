@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,5 +26,11 @@ public class AnswerTestController {
     public @ResponseBody List<AnswerTesting> AnswerTestRest() {	
 
         return (List<AnswerTesting>) testRepo.findAll();
+    }
+	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@RequestMapping(value="/testsave", method = RequestMethod.POST)
+    public @ResponseBody AnswerTesting saveBookRest(@RequestBody AnswerTesting answer) {	
+    	return testRepo.save(answer);
     }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Typography from '@mui/material/Typography';
 import { Paper } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -18,7 +18,7 @@ function Radiobutton(props) {
                 marginBottom: "20px",
             }} >
                 <Typography>
-                    <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.question}</Box>
+                    <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.questionName}</Box>
                 </Typography>
                 {props.kysymys.options.map(optio => <label>
                     <input type="radio" value={optio.option} id = {props.kysymys.questionId} name={props.kysymys.questionId}  onChange={(e) => props.handleRadioAdd(e)}/>
