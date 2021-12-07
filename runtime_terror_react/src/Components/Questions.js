@@ -17,15 +17,24 @@ function Questions() {
     const [openAnswers, setOpenAnswers] = useState([]);
     const [submit, setSubmit] = useState({
         radio: [],
-        checkbox: [],
+        //checkbox: [],
         open: []
     });
 
     const handleRadioAdd = (event) => {
-
-        setRadioAnswers({ ...radioAnswers, questionId:event.target.id, answer:event.target.value });
-
+        setRadioAnswers({ ...radioAnswers, [event.target.id]: event.target.value });
     }
+
+    const mapForSubmit = (radio) => {
+
+        const array = [];
+
+        for (const property in radio) {
+            array.push({ questionId: property, answer: radio[property] })
+        }
+        return array;
+    }
+
     const handleCheckboxAdd = (event) => {
 
         if (checkboxAnswers[event.target.id]?.includes(event.target.value)) {
@@ -43,10 +52,9 @@ function Questions() {
 
     const handleSubmit = (radio, checkbox, open) => {
         setSubmit(
-            submit.radio = radio,
-            submit.checkbox = checkbox,
-            submit.open = open);
-        console.log(JSON.stringify(submit, null, 2));
+            submit.radio = mapForSubmit(radio),
+            submit.open = mapForSubmit(open));
+        
         (async () => {
             const rawResponse = await fetch('http://localhost:8080/testsave', {
                 method: 'POST',
@@ -54,12 +62,13 @@ function Questions() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({questionId: 2, answer: "testivastaus"})
+                body: JSON.stringify(submit.radio)
             });
             const content = await rawResponse.json();
 
             console.log(content);
         })();
+        console.log(JSON.stringify(submit.radio, null, 2));
     }
 
     const fetchKysymykset = async () => {

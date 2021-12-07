@@ -30,6 +30,7 @@ public class QuestionController {
 	@RequestMapping(value="/addquestions")                        //ohjaa addquestions.html 
        public String addQuestions(Model model) {
     	   model.addAttribute("question",new Question());
+    	
        return "addquestions";
     }
 	 @RequestMapping(value = "/save", method = RequestMethod.POST)
