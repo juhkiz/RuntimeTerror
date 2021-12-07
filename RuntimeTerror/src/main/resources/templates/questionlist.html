@@ -13,15 +13,12 @@
 		<tr>
 		    <th>Type:</th>
 		    <th>Question:</th>
-		    <th>Options:</th>
-		    <th>Answer:</th>
-		    
+		    <th>Options:</th>		    
 		</tr>  
     	<tr th:each = "question : ${questions}">
     		<td th:text="${question.questionType}"></td>
     		<td th:text="${question.questionName}"></td>
     		<td th:text="${question.options}"></td>
-    		<td th:text="${question.answers}"></td>
     	</tr>
      </table>
 	<form th:action="@{/logout}" method="post">

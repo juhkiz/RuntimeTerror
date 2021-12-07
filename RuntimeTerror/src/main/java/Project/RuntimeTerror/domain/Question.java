@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -19,11 +20,13 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long questionId;
-	private String questionType;
-	private String questionName;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Option> options;
+	@NotEmpty
+	private String questionType;
+	
+	@NotEmpty
+	private String questionName;
+	private String options;
 	
 	@ManyToOne
 	@JoinColumn(name = "questionnaireId")
@@ -37,7 +40,7 @@ public class Question {
 	}
 	
 
-	public Question(String questionType, String questionName, List<Option> options) {
+	public Question(String questionType, String questionName, String options) {
 		super();
 		this.questionType = questionType;
 		this.questionName = questionName;
@@ -45,7 +48,7 @@ public class Question {
 	}
 
 
-	public Question(String questionType, String questionName, List<Option> options, List<Answer> answers) {
+	public Question(String questionType, String questionName, String options, List<Answer> answers) {
 		super();
 		this.questionType = questionType;
 		this.questionName = questionName;
@@ -91,12 +94,12 @@ public class Question {
 	}
 
 
-	public List<Option> getOptions() {
+	public String getOptions() {
 		return options;
 	}
 
 
-	public void setOptions(List<Option> options) {
+	public void setOptions(String options) {
 		this.options = options;
 	}
 

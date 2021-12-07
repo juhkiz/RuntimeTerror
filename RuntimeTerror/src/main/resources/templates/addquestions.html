@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h1>Add questions</h1>
+	<h5>Question type and question cannot be empty</h5>
 	<div class="container">
 		<div class="col-md-4">
 		<form th:object="${question}" th:action="@{save}" action="#" method="post">
@@ -19,7 +20,7 @@
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
 			<label for="options">Options</label>
-			<input type="text" id="options" th:field="*{question.options}" class="form-control"/>
+			<input type="text" id="options" th:field="*{options}" class="form-control"/>
 			<div style="clear: both; display: block; height: 10px;"></div>
 	
 			<input type="submit" class="btn btn-primary" value="Save"></input>
