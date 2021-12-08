@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 
 function Radiobutton(props) {
 
+    var array = props.kysymys.options.split(',');
+
 
     return (
         <div>
@@ -20,9 +22,9 @@ function Radiobutton(props) {
                 <Typography>
                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.questionName}</Box>
                 </Typography>
-                {props.kysymys.options.map(optio => <label>
-                    <input type="radio" value={optio.option} id = {props.kysymys.questionId} name={props.kysymys.questionId}  onChange={(e) => props.handleRadioAdd(e)}/>
-                    {optio.option}
+                {array.map(optio => <label>
+                    <input type="radio" value={optio} id={props.kysymys.questionId} name={props.kysymys.questionId} onChange={(e) => props.handleRadioAdd(e)} />
+                    {optio}
                     <br></br>
                 </label>)}
             </Paper>

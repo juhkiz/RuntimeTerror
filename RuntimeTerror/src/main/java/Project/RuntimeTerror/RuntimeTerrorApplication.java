@@ -1,16 +1,14 @@
 package Project.RuntimeTerror;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import Project.RuntimeTerror.domain.Answer;
 import Project.RuntimeTerror.domain.AnswerRepository;
-import Project.RuntimeTerror.domain.Option;
 import Project.RuntimeTerror.domain.Question;
 import Project.RuntimeTerror.domain.QuestionRepository;
 import Project.RuntimeTerror.domain.Questionnaire;
@@ -36,11 +34,11 @@ public class RuntimeTerrorApplication {
 			Question question2 = new Question("Open", "Kerro tarina");
 			qRepo.save(question2);
 			
-<<<<<<< HEAD
+
 			Question question3 = new Question("Radio", "Mitä kuuluu?", "Hyvää, Huonoa, En kerro");
 			qRepo.save(question3);
-=======
-			Option option1 = new Option("Hyvää");
+
+			/*Option option1 = new Option("Hyvää");
 			Option option2 = new Option("Pahaa");
 			ArrayList<Option> options1 = new ArrayList<>();
 			options1.add(option1);
@@ -68,27 +66,17 @@ public class RuntimeTerrorApplication {
 			ArrayList<Option> options3 = new ArrayList<>();
 			options3.add(optioni1);
 			options3.add(optioni2);
-			options3.add(optioni3);
+			options3.add(optioni3);*/
 			
-			Question question2 = new Question("Checkbox","Lempivärit?", options2);
-			Question question3 = new Question("Open","Kerro tarina");
-			Question question4 = new Question("Open","Tämä on avoin kommenttikenttä");
-			Question question5 = new Question("Checkbox","Lempi eläimet?", options3);
-			Question question6 = new Question("Radio","Onko koodaaminen?", optionssi1);
-			
-			Question question1 = new Question("Radio","Mitä kuuluu?", options1);
-			ArrayList<Question> questions1 = new ArrayList<>();
+
+			/*ArrayList<Question> questions1 = new ArrayList<>();
 			questions1.add(question1);
 			questions1.add(question2);
 			questions1.add(question3);
-			questions1.add(question4);
-			questions1.add(question5);
-			questions1.add(question6);
 			
 			Questionnaire test1 = new Questionnaire("Testikysely",questions1);
 			
-			queRepo.save(test1);
->>>>>>> 5fd5ecfadff984619ccc548ebb23f73f7a28b25c
+			queRepo.save(test1);*/
 			
 
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");  // admin:admin

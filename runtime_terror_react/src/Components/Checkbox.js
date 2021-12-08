@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 
 function Checkbox(props) {
 
+    var array = props.kysymys.options.split(',');
 
     return (
         <div>
@@ -18,9 +19,9 @@ function Checkbox(props) {
                 <Typography>
                     <Box sx={{ fontWeight: 'bold', m: 1 }}>{props.kysymys.questionName}</Box>
                 </Typography>
-                {props.kysymys.options.map(optio => <label>
-                    <input type="checkbox" value={optio.option} id={props.kysymys.questionId} name={props.kysymys.questionId} onChange={(e) => props.handleCheckboxAdd(e)} />
-                    {optio.option}
+                {array.map(optio => <label>
+                    <input type="checkbox" value={optio} id={props.kysymys.questionId} name={props.kysymys.questionId} onChange={(e) => props.handleCheckboxAdd(e)} />
+                    {optio}
                     <br></br>
                 </label>)}
             </Paper>

@@ -50,7 +50,7 @@ function Questions() {
         setOpenAnswers({ ...openAnswers, [event.target.id]: event.target.value });
     }
 
-    const handleSubmit = (radio, checkbox, open) => {
+    const handleSubmit = (radio, open) => {
         setSubmit(
             submit.radio = mapForSubmit(radio),
             submit.open = mapForSubmit(open));
@@ -62,20 +62,21 @@ function Questions() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(submit.radio)
+                body: JSON.stringify(submit.open) 
             });
             const content = await rawResponse.json();
 
             console.log(content);
         })();
         console.log(JSON.stringify(submit.radio, null, 2));
+        console.log(JSON.stringify(submit, null, 2));
     }
 
     const fetchKysymykset = async () => {
 
         const response = await fetch("http://localhost:8080/questions");
         const data = await response.json();
-
+        
         setKysymykset(data);
     }
 
@@ -92,7 +93,7 @@ function Questions() {
                 if (kysymys.questionType === "Radio") {
                     return (<Radiobutton kysymys={kysymys} handleRadioAdd={handleRadioAdd} />
                     );
-                }
+               }
                 else if (kysymys.questionType === "Checkbox") {
                     return (<Checkbox kysymys={kysymys} handleCheckboxAdd={handleCheckboxAdd} />
                     );
@@ -104,7 +105,7 @@ function Questions() {
 
 
             })}
-            <Button sx={{ marginLeft: "45%" }} variant="contained" onClick={() => handleSubmit(radioAnswers, checkboxAnswers, openAnswers)}>Submit</Button>
+            <Button sx={{ marginLeft: "45%" }} variant="contained" onClick={() => handleSubmit(radioAnswers, openAnswers)}>Submit</Button>
         </div>
     );
 
