@@ -45,4 +45,9 @@ public class AnswerTesting {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+
+	@Override
+	public String toString() {
+		return "AnswerTesting [answerId=" + answerId + ", questionId=" + questionId + ", answer=" + answer + "]";
+	}
 }

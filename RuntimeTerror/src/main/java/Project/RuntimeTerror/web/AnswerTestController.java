@@ -30,7 +30,7 @@ public class AnswerTestController {
 	
 	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value="/testsave", method = RequestMethod.POST)
-    public @ResponseBody AnswerTesting saveAnswerRest(@RequestBody AnswerTesting answer) {	
-    	return testRepo.save(answer);
+    public @ResponseBody Iterable<AnswerTesting> saveAnswerRest(@RequestBody List<AnswerTesting> answers) {	
+    	return testRepo.saveAll(answers);
     }
 }

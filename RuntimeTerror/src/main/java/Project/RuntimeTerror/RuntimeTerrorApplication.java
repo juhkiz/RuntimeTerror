@@ -28,8 +28,6 @@ public class RuntimeTerrorApplication {
 	public CommandLineRunner bookDataDemo(UserRepository uRepository, QuestionnaireRepository queRepo, QuestionRepository qRepo, AnswerRepository ansRepo) {
 		return (args) -> {
 
-			Question question1 = new Question("Checkbox", "Lempivärisi?", "Sininen, Punainen, Vihreä");
-			qRepo.save(question1);
 			
 			Question question2 = new Question("Open", "Kerro tarina");
 			qRepo.save(question2);
