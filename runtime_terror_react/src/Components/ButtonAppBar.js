@@ -15,18 +15,10 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Kyselylomake
           </Typography>
-          <Link to="/testi">
-            <Button color="inherit">Lomake</Button>
-          </Link>
-          <Link to="/admin">
-            <Button color="inherit">Admin sisäänkirjaus </Button>
-          </Link>
+          <Button color="inherit" href="http://localhost:8080/addquestions">Admin sisäänkirjaus </Button>
           <Link to="/">
             <Button color="inherit">Etusivu </Button>
           </Link>
-          <form action="http://localhost:8080/addquestions">
-            <button type="submit">Click me</button>
-          </form>
         </Toolbar>
       </AppBar>
     </Box>

@@ -36,45 +36,6 @@ public class RuntimeTerrorApplication {
 			Question question3 = new Question("Radio", "Mitä kuuluu?", "Hyvää, Huonoa, En kerro");
 			qRepo.save(question3);
 
-			/*Option option1 = new Option("Hyvää");
-			Option option2 = new Option("Pahaa");
-			ArrayList<Option> options1 = new ArrayList<>();
-			options1.add(option1);
-			options1.add(option2);
-			
-			Option optio1 = new Option("Kivaa");
-			Option optio2 = new Option("Tylsää");
-			ArrayList<Option> optionssi1 = new ArrayList<>();
-			optionssi1.add(optio1);
-			optionssi1.add(optio2);
-			
-			Option option3 = new Option("Sininen");
-			Option option4 = new Option("Keltainen");
-			Option option5 = new Option("Vihreä");
-			Option option6 = new Option("Punainen");
-			ArrayList<Option> options2 = new ArrayList<>();
-			options2.add(option3);
-			options2.add(option4);
-			options2.add(option5);
-			options2.add(option6);
-			
-			Option optioni1 = new Option("Kissa");
-			Option optioni2 = new Option("Koira");
-			Option optioni3 = new Option("Kala");
-			ArrayList<Option> options3 = new ArrayList<>();
-			options3.add(optioni1);
-			options3.add(optioni2);
-			options3.add(optioni3);*/
-			
-
-			/*ArrayList<Question> questions1 = new ArrayList<>();
-			questions1.add(question1);
-			questions1.add(question2);
-			questions1.add(question3);
-			
-			Questionnaire test1 = new Questionnaire("Testikysely",questions1);
-			
-			queRepo.save(test1);*/
 			
 
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");  // admin:admin
