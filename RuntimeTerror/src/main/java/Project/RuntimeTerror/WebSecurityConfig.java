@@ -23,18 +23,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable();
-        /*.authorizeRequests().antMatchers("/addquestions").authenticated() // Pitäisi pyytää kirjautumaan kun yrittää lisätä kysymyksiä
+        http
+        .authorizeRequests().antMatchers("/addquestions").authenticated()
         .and()
-        .authorizeRequests() // ehkä pitää poistaa
-        .anyRequest().permitAll() // sallii kaikki pyynnöt
+        .cors().and().csrf().disable()
+        .authorizeRequests()
+        .anyRequest().permitAll()
         .and()
       .formLogin()
-          .defaultSuccessUrl("/addquestions") //vakiona menee tänne kirjautumisen jälkeen
+          .defaultSuccessUrl("/addquestions")
           .permitAll()
           .and()
       .logout()
-          .permitAll();*/ 
+          .permitAll();
     }
     
     @Autowired

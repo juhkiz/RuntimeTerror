@@ -19,6 +19,9 @@ export default function ButtonAppBar() {
           <Link to="/">
             <Button color="inherit">Etusivu </Button>
           </Link>
+          <Link to="/answers">
+            <Button color="inherit">Vastauksia </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
