@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,5 +51,10 @@ public class QuestionController {
 	    public String questionList(Model model) {	
 	        model.addAttribute("questions", qRepo.findAll());
 	        return "questionlist";
+	    }
+	 @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	    public String deleteQuestion(@PathVariable("id") Long questionId, Model model) {
+	    	qRepo.deleteById(questionId);
+	        return "redirect:../questionlist";
 	    }
 }

@@ -19,6 +19,7 @@
     		<td th:text="${question.questionType}"></td>
     		<td th:text="${question.questionName}"></td>
     		<td th:text="${question.options}"></td>
+    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${question.questionId})}" class="btn btn-danger">Delete</a></td>
     	</tr>
      </table>
 	<form th:action="@{/logout}" method="post">
