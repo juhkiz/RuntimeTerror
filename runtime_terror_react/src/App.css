@@ -4,3 +4,26 @@ color: whitesmoke}
 body {
   background-color: #fbfbfb;
 }
+
+.frontpaper {
+ 
+    position: absolute;
+    width: 20%;
+    height: 18.5%;
+    /* center page with absolute position */
+    top: 15%; left: 50%; transform: translate(-50%, 0);
+    flex-wrap: wrap; 
+    display:flex;
+    justify-content: center;
+  
+}
+
+.button:hover {
+transform: scale(1.05);
+}
+.thanks {  
+  position:absolute;
+  top: 35%; left: 50%; transform: translate(-50%, 0);
+  max-width: 25%;
+
+}

@@ -3,12 +3,12 @@ import Radiobutton from './Radiobutton';
 import Checkbox from './Checkbox';
 import Openquestions from './Openquestions';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 
 
 
-
-function Questions() {
+function Questions(props) {
 
     const [kysymykset, setKysymykset] = useState([]);
 
@@ -80,6 +80,14 @@ function Questions() {
     }
 
 
+    // ON CLICK FUNCTIONS // 
+    const onClickFunctions = () => {
+        // SET ANSWERS // 
+        handleSubmit(radioAnswers, openAnswers)
+        // SET THANK YOU MESSAGE // 
+        props.setThankYou("Thank you for answering");
+    }
+
     useEffect(() => {
         fetchKysymykset();
     }, []);
@@ -104,7 +112,8 @@ function Questions() {
 
 
             })}
-            <Button sx={{ marginLeft: "45%" }} variant="contained" onClick={() => handleSubmit(radioAnswers, openAnswers)}>Submit</Button>
+            <Button className="button" /*component={Link} to={'/'}*/ sx={{ marginLeft: "45%" }} variant="contained" 
+            onClick={() => onClickFunctions()}>Submit</Button>
         </div>
     );
 
