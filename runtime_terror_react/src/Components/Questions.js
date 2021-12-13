@@ -21,19 +21,6 @@ function Questions(props) {
         setRadioAnswers({ ...radioAnswers, [event.target.id]: event.target.value });
     }
 
-    const mapForSubmit = (radio, open) => {
-
-        const array = [];
-
-        for (const property in radio) {
-            array.push({ questionId: property, answer: radio[property] })
-        }
-        for (const property in open) {
-            array.push({ questionId: property, answer: open[property] })
-        }
-        return array;
-    }
-
     const handleCheckboxAdd = (event) => {
 
         if (checkboxAnswers[event.target.id]?.includes(event.target.value)) {
@@ -50,9 +37,16 @@ function Questions(props) {
     }
 
     const handleSubmit = (radio, open) => {
-        setSubmit(
-            mapForSubmit(radio, open));
-        
+
+        const array = []
+
+        for (const property in radio) {
+            array.push({ questionId: property, answer: radio[property] })
+        }
+        for (const property in open) {
+            array.push({ questionId: property, answer: open[property] })
+        }
+
         (async () => {
             const rawResponse = await fetch('http://localhost:8080/testsave', {
                 method: 'POST',
@@ -60,10 +54,10 @@ function Questions(props) {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(submit) 
-            });
-
-            
+                body: JSON.stringify(array) 
+               
+            }
+            );    
             const content = await rawResponse.json();
 
             console.log(content);
@@ -82,10 +76,11 @@ function Questions(props) {
 
     // ON CLICK FUNCTIONS // 
     const onClickFunctions = () => {
-        // SET ANSWERS // 
-        handleSubmit(radioAnswers, openAnswers)
+        handleSubmit(radioAnswers,openAnswers)
         // SET THANK YOU MESSAGE // 
         props.setThankYou("Thank you for answering");
+
+       
     }
 
     useEffect(() => {
@@ -112,7 +107,7 @@ function Questions(props) {
 
 
             })}
-            <Button className="button" /*component={Link} to={'/'}*/ sx={{ marginLeft: "45%" }} variant="contained" 
+            <Button className="button" component={Link} to={'/'} sx={{ marginLeft: "45%" }} variant="contained" 
             onClick={() => onClickFunctions()}>Submit</Button>
         </div>
     );

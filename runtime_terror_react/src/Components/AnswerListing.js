@@ -8,6 +8,8 @@ function AnswerListing(props) {
 
     console.log(props.vastausData)
 
+    console.log(props)
+
     return (
         <div>
             <Paper sx={{
