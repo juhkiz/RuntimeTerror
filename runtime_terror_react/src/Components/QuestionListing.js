@@ -4,9 +4,9 @@ import { Paper } from '@mui/material';
 
 
 
-function AnswerListing(props) {
+function QuestionListing(props) {
 
-    console.log(props.vastausData)
+    console.log(props.kysymysData)
 
     console.log(props)
 
@@ -14,16 +14,16 @@ function AnswerListing(props) {
         <div>
             <Paper sx={{
                 minHeight:"50px",
-                background: "white",
+                background: "green",
                 textAlign: "left",
                 maxWidth: "400px",
                 margin: "auto",
                 marginBottom: "20px",
             }} >
-                <Typography sx={{fontWeight:"bold"}}> Vastauksen kysymys ID: {props.vastausData.questionId}  <br/> Vastaus: {props.vastausData.answer}</Typography>
+                <Typography sx={{fontWeight:"bold"}}> Kysymys ID: {props.kysymysData.questionId}  <br/> Kaysymys: {props.kysymysData.questionName}</Typography>
                 <br></br>
             </Paper>
         </div>
     );
 }
-export default AnswerListing
+export default QuestionListing

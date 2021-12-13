@@ -2,11 +2,10 @@ a { text-decoration: none;
 color: whitesmoke}
 
 body {
-  background-color: #fbfbfb;
 }
 
 .frontpaper {
- 
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
     position: absolute;
     width: 20%;
     height: 18.5%;
